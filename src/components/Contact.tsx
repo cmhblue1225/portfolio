@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react'
+import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
 import { useState } from 'react'
 
 const Contact = () => {
@@ -9,27 +9,6 @@ const Contact = () => {
     subject: '',
     message: ''
   })
-
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
-    // 실제 이메일 전송 로직은 여기에 구현
-    setTimeout(() => {
-      setIsSubmitting(false)
-      alert('메시지가 성공적으로 전송되었습니다!')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    }, 2000)
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
 
   const contactInfo = [
     {

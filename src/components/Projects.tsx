@@ -10,7 +10,6 @@ import {
   Code2,
   FileText,
   ChevronDown,
-  ChevronUp,
   Award,
   TrendingUp,
   Bug,
@@ -62,7 +61,6 @@ interface Project {
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const [expandedProject, setExpandedProject] = useState<number | null>(null)
   const [activeTab, setActiveTab] = useState('overview')
 
   const projects: Project[] = [
