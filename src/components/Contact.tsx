@@ -1,14 +1,7 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
-import { useState } from 'react'
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  })
 
   const contactInfo = [
     {
