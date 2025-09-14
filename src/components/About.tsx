@@ -118,7 +118,7 @@ const About = () => {
             className="lg:col-span-2 space-y-6"
           >
             <h3 className="text-2xl md:text-3xl font-bold text-apple-dark dark:text-white">
-              안녕하세요, 저는 조민혁입니다! 👨‍💻
+              안녕하세요, 저는 조민혁입니다!
             </h3>
             
             <div className="space-y-4 text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed">
@@ -128,10 +128,11 @@ const About = () => {
               </p>
               
               <p>
-                <strong className="text-apple-blue">편의점 종합 솔루션</strong>부터 
+                <strong className="text-apple-blue">Synapse</strong>부터 
                 <strong className="text-apple-blue"> AI 감정 상담 서비스</strong>,
                 <strong className="text-apple-blue"> 개발 문서 자동 생성 서비스</strong>, 
-                <strong className="text-apple-blue"> 혁신적인 AI 센서 게임 플랫폼</strong>등 다양한
+                <strong className="text-apple-blue"> 혁신적인 AI 센서 게임 플랫폼</strong>,
+                <strong className="text-apple-blue">편의점 종합 솔루션</strong>등 다양한
                 프로젝트를 통해 실제 환경에서 필요한 솔루션을 구현한 경험이 있습니다.
               </p>
               
@@ -176,7 +177,7 @@ const About = () => {
           className="mt-20"
         >
           <h3 className="text-2xl font-bold text-apple-dark dark:text-white text-center mb-12">
-            💼 핵심 역량
+            핵심 역량
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
