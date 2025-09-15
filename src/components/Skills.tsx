@@ -7,38 +7,38 @@ const Skills = () => {
   const skillCategories = {
     frontend: {
       title: 'Frontend',
-      icon: '',
+      icon: '💻',
       skills: [
-        { name: 'React', level: 95, color: 'from-blue-500 to-blue-600' },
-        { name: 'TypeScript', level: 90, color: 'from-blue-600 to-blue-700' },
-        { name: 'JavaScript', level: 85, color: 'from-yellow-500 to-yellow-600' },
-        { name: 'HTML/CSS', level: 88, color: 'from-orange-500 to-orange-600' },
-        { name: 'Tailwind CSS', level: 92, color: 'from-teal-500 to-teal-600' },
-        { name: 'Framer Motion', level: 80, color: 'from-purple-500 to-purple-600' }
+        { name: 'React', icon: '⚛️' },
+        { name: 'TypeScript', icon: '📘' },
+        { name: 'JavaScript', icon: '🟨' },
+        { name: 'HTML/CSS', icon: '🎨' },
+        { name: 'Tailwind CSS', icon: '🎯' },
+        { name: 'Framer Motion', icon: '🎬' }
       ]
     },
     backend: {
       title: 'Backend',
-      icon: '',
+      icon: '⚙️',
       skills: [
-        { name: 'Node.js', level: 85, color: 'from-green-500 to-green-600' },
-        { name: 'Express.js', level: 80, color: 'from-gray-600 to-gray-700' },
-        { name: 'Supabase', level: 90, color: 'from-emerald-500 to-emerald-600' },
-        { name: 'PostgreSQL', level: 75, color: 'from-blue-700 to-blue-800' },
-        { name: 'Socket.IO', level: 78, color: 'from-indigo-500 to-indigo-600' },
-        { name: 'RESTful API', level: 85, color: 'from-red-500 to-red-600' }
+        { name: 'Node.js', icon: '🟢' },
+        { name: 'Express.js', icon: '🚂' },
+        { name: 'Supabase', icon: '🗃️' },
+        { name: 'PostgreSQL', icon: '🐘' },
+        { name: 'Socket.IO', icon: '🔌' },
+        { name: 'RESTful API', icon: '🌐' }
       ]
     },
     ai: {
       title: 'AI & Tools',
-      icon: '',
+      icon: '🤖',
       skills: [
-        { name: 'OpenAI API', level: 88, color: 'from-cyan-500 to-cyan-600' },
-        { name: 'ChatGPT Integration', level: 85, color: 'from-green-600 to-green-700' },
-        { name: 'Git/GitHub', level: 90, color: 'from-gray-700 to-gray-800' },
-        { name: 'Vite', level: 85, color: 'from-violet-500 to-violet-600' },
-        { name: 'Spotify API', level: 75, color: 'from-green-500 to-green-600' },
-        { name: 'Sensor APIs', level: 80, color: 'from-orange-600 to-orange-700' }
+        { name: 'OpenAI API', icon: '🧠' },
+        { name: 'ChatGPT Integration', icon: '💬' },
+        { name: 'Git/GitHub', icon: '📁' },
+        { name: 'Vite', icon: '⚡' },
+        { name: 'Spotify API', icon: '🎵' },
+        { name: 'Sensor APIs', icon: '📡' }
       ]
     }
   }
@@ -88,8 +88,8 @@ const Skills = () => {
                     : 'text-apple-gray-600 dark:text-apple-gray-300 hover:bg-apple-gray-100 dark:hover:bg-apple-gray-700'
                 }`}
               >
-                <span className="mr-2">{skillCategories[category].icon}</span>
-                {skillCategories[category].title}
+{skillCategories[category].icon}
+                <span className="ml-2">{skillCategories[category].title}</span>
               </motion.button>
             ))}
           </div>
@@ -101,55 +101,37 @@ const Skills = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto"
+          className="max-w-6xl mx-auto"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {skillCategories[activeCategory as SkillCategory].skills.map((skill: Skill, index: number) => (
               <motion.div
                 key={skill.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                className="bg-white dark:bg-apple-gray-800 rounded-xl p-6 shadow-lg card-hover"
+                whileHover={{ y: -2 }}
+                className="
+                  bg-white dark:bg-apple-gray-800
+                  border border-apple-gray-200 dark:border-apple-gray-700
+                  rounded-xl p-4 text-center
+                  shadow-sm hover:shadow-md
+                  transition-all duration-300
+                  cursor-pointer group
+                "
               >
-                <div className="flex justify-between items-center mb-3">
-                  <h3 className="text-lg font-semibold text-apple-dark dark:text-white">
-                    {skill.name}
-                  </h3>
-                  <span className="text-sm font-medium text-apple-gray-600 dark:text-apple-gray-300">
-                    {skill.level}%
-                  </span>
+                {/* 아이콘 */}
+                <div className="text-2xl mb-3 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+                  {skill.icon}
                 </div>
-                
-                <div className="w-full bg-apple-gray-200 dark:bg-apple-gray-700 rounded-full h-3">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className={`h-3 rounded-full bg-gradient-to-r ${skill.color} relative overflow-hidden`}
-                  >
-                    {/* 진행바 애니메이션 효과 */}
-                    <motion.div
-                      className="absolute inset-0 bg-white/30"
-                      animate={{
-                        x: [-100, 300],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatType: 'loop',
-                        ease: 'linear',
-                      }}
-                      style={{
-                        width: '100px',
-                        height: '100%',
-                        transform: 'skewX(-20deg)',
-                      }}
-                    />
-                  </motion.div>
-                </div>
+
+                {/* 스킬 이름 */}
+                <h3 className="text-sm md:text-base font-semibold text-apple-dark dark:text-white leading-tight">
+                  {skill.name}
+                </h3>
+
+                {/* 미니멀한 액센트 */}
+                <div className="mt-3 h-0.5 w-8 mx-auto bg-apple-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             ))}
           </div>
