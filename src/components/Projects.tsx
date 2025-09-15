@@ -66,6 +66,71 @@ const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
+      title: 'Synapse AI - 지능형 지식 관리 시스템',
+      subtitle: '개인 지식을 구조화하고 관리하는 차세대 AI 기반 시스템',
+      description: '완전 자동화된 PDF 처리, AI 요약, 벡터 검색, 실시간 지식 그래프를 제공하는 혁신적인 지식 관리 플랫폼입니다. Supabase Edge Functions와 OpenAI를 활용한 엔터프라이즈급 솔루션입니다.',
+      image: '/api/placeholder/800/500',
+      category: 'AI 서비스, 지식 관리',
+      period: '2025.09 - 현재',
+      team: '개인 프로젝트',
+      technologies: ['React 19', 'TypeScript', 'Supabase', 'OpenAI API', 'pgvector', 'D3.js', 'TailwindCSS', 'Vite', 'Netlify'],
+      features: [
+        'AI 기반 PDF 자동 텍스트 추출 및 요약 생성',
+        'pgvector를 활용한 벡터 의미 검색 시스템',
+        'D3.js 기반 실시간 인터랙티브 지식 그래프',
+        '개인 지식 기반 AI 채팅 및 질의응답',
+        'Supabase Edge Functions 서버사이드 처리',
+        'Row Level Security 엔터프라이즈급 보안',
+        '실시간 데이터 동기화 및 협업 지원',
+        '완전 자동화된 지식 관리 워크플로우'
+      ],
+      achievements: [
+        {
+          title: '혁신적 AI 통합 시스템 구축',
+          description: 'OpenAI GPT-4o-mini와 임베딩 모델을 활용한 완전 자동화 지식 처리 시스템 구현'
+        },
+        {
+          title: '엔터프라이즈급 아키텍처 설계',
+          description: 'Supabase + pgvector를 활용한 확장 가능한 서버리스 백엔드 아키텍처 구축'
+        },
+        {
+          title: '프로덕션 배포 및 운영',
+          description: 'Netlify를 통한 실제 서비스 배포 완료 및 라이브 운영 중'
+        }
+      ],
+      troubleshooting: [
+        {
+          problem: 'PDF 클라이언트 사이드 처리의 CSP 제약 문제',
+          solution: 'Supabase Edge Functions를 활용한 서버사이드 PDF 텍스트 추출 시스템 구현',
+          impact: '안정적이고 확장 가능한 PDF 처리 아키텍처 완성'
+        },
+        {
+          problem: '대용량 벡터 데이터의 검색 성능 최적화',
+          solution: 'pgvector 인덱스 최적화 및 하이브리드 검색 알고리즘 구현',
+          impact: '의미 검색 정확도 및 속도 향상'
+        },
+        {
+          problem: 'OpenAI API 비용 최적화 및 응답 속도 개선',
+          solution: '텍스트 청킹, 캐싱 전략, 효율적 모델 선택으로 비용 및 성능 최적화',
+          impact: 'API 호출 비용 절감 및 사용자 경험 향상'
+        }
+      ],
+      metrics: {
+        completionRate: '100%',
+        codeLines: '15,000+',
+        testCoverage: '85%',
+        buildTime: '2min'
+      },
+      completionRate: '100%',
+      deployUrl: 'https://synapse-doc.netlify.app',
+      githubUrl: 'https://github.com/cmhblue1225/synapse-supabase',
+      status: 'LIVE',
+      color: 'from-purple-500 to-indigo-600',
+      icon: <Brain className="w-8 h-8" />,
+      featured: true
+    },
+    {
+      id: 2,
       title: 'Convi - 편의점 종합 솔루션',
       subtitle: '디지털 혁신으로 편의점을 재정의하다',
       description: '완전한 상용 수준의 편의점 통합 관리 플랫폼입니다. 고객, 점주, 본사가 실시간으로 연결되어 주문부터 재고 관리, 매출 분석까지 모든 비즈니스 프로세스를 자동화합니다.',
@@ -131,7 +196,7 @@ const Projects = () => {
       featured: true
     },
     {
-      id: 2,
+      id: 3,
       title: 'NewMind - 감정 AI 상담 서비스',
       subtitle: '감정을 이해하는 인공지능 상담사',
       description: 'OpenAI GPT API를 활용한 감정 분석 및 AI 상담 서비스입니다. 사용자의 일기를 분석하여 감정 상태를 파악하고, 일기를 기반으로 상담 및 맞춤형 피드백과 Spotify 음악 추천을 제공합니다.',
@@ -194,7 +259,7 @@ const Projects = () => {
       featured: true
     },
     {
-      id: 3,
+      id: 4,
       title: 'Sensor Game Hub - 센서 게임 플랫폼',
       subtitle: '새로운 게임 경험의 창조',
       description: '모바일 센서를 활용한 혁신적인 게임 플랫폼입니다. QR 코드로 간편하게 연결하고, 기울이기와 회전으로 다양한 게임을 즐길 수 있는 멀티플레이어 지원 게임 허브입니다.',
@@ -260,7 +325,7 @@ const Projects = () => {
       featured: true
     },
     {
-      id: 4,
+      id: 5,
       title: 'ReviseAI - AI 코드 리뷰 도구',
       subtitle: 'AI가 제안하는 더 나은 코드',
       description: 'OpenAI API를 활용한 자동 코드 리뷰 및 최적화 제안 도구입니다. 코드 품질 향상과 베스트 프랙티스 준수를 위한 AI 어시스턴트 역할을 합니다.',
@@ -320,7 +385,7 @@ const Projects = () => {
       featured: false
     },
     {
-      id: 5,
+      id: 6,
       title: 'AI Doc Generator - 문서 자동 생성',
       subtitle: '개발자를 위한 스마트 문서 도구',
       description: 'Next.js와 AI를 결합한 개발 문서 자동 생성 도구입니다. 코드 주석과 구조를 분석하여 API 문서, README, 기술 명세서를 자동으로 생성합니다.',
@@ -677,7 +742,7 @@ const Projects = () => {
             주요 <span className="text-gradient-apple">프로젝트</span>
           </h2>
           <p className="text-lg text-apple-gray-600 dark:text-apple-gray-300 max-w-3xl mx-auto">
-            실제 사용자가 이용하는 상용 수준의 웹 서비스들을 소개합니다. 각 프로젝트를 클릭하여 상세 정보를 확인하세요.
+            상용 수준의 웹 서비스들을 소개합니다. 각 프로젝트를 클릭하여 상세 정보를 확인할 수 있습니다.
           </p>
         </motion.div>
 

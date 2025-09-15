@@ -7,7 +7,7 @@ const Skills = () => {
   const skillCategories = {
     frontend: {
       title: 'Frontend',
-      icon: '🎨',
+      icon: '',
       skills: [
         { name: 'React', level: 95, color: 'from-blue-500 to-blue-600' },
         { name: 'TypeScript', level: 90, color: 'from-blue-600 to-blue-700' },
@@ -19,7 +19,7 @@ const Skills = () => {
     },
     backend: {
       title: 'Backend',
-      icon: '⚙️',
+      icon: '',
       skills: [
         { name: 'Node.js', level: 85, color: 'from-green-500 to-green-600' },
         { name: 'Express.js', level: 80, color: 'from-gray-600 to-gray-700' },
@@ -31,7 +31,7 @@ const Skills = () => {
     },
     ai: {
       title: 'AI & Tools',
-      icon: '🤖',
+      icon: '',
       skills: [
         { name: 'OpenAI API', level: 88, color: 'from-cyan-500 to-cyan-600' },
         { name: 'ChatGPT Integration', level: 85, color: 'from-green-600 to-green-700' },
@@ -165,7 +165,7 @@ const Skills = () => {
         >
           <div className="bg-gradient-to-r from-apple-blue/10 to-purple-500/10 dark:from-apple-blue/20 dark:to-purple-500/20 rounded-3xl p-8">
             <h3 className="text-2xl font-bold text-apple-dark dark:text-white mb-4">
-              🌟 특화 분야
+              특화 분야
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
               <div>

@@ -128,11 +128,11 @@ const About = () => {
               </p>
               
               <p>
-                <strong className="text-apple-blue">Synapse</strong>부터 
+                <strong className="text-apple-blue">Synapse AI 지능형 지식 관리 시스템</strong>부터
                 <strong className="text-apple-blue"> AI 감정 상담 서비스</strong>,
-                <strong className="text-apple-blue"> 개발 문서 자동 생성 서비스</strong>, 
-                <strong className="text-apple-blue"> 혁신적인 AI 센서 게임 플랫폼</strong>,
-                <strong className="text-apple-blue">편의점 종합 솔루션</strong>등 다양한
+                <strong className="text-apple-blue"> 센서 게임 플랫폼</strong>,
+                <strong className="text-apple-blue"> 편의점 종합 솔루션</strong>,
+                <strong className="text-apple-blue"> 개발 문서 자동 생성 서비스</strong>등 다양한
                 프로젝트를 통해 실제 환경에서 필요한 솔루션을 구현한 경험이 있습니다.
               </p>
               
