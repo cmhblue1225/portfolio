@@ -251,7 +251,7 @@ const Projects = () => {
         codeLines: '18,000+',
       },
       completionRate: '100%',
-      deployUrl: 'https://beamish-dragon-f15ff7.netlify.app',
+      deployUrl: 'https://healing-diary.netlify.app/',
       githubUrl: 'https://github.com/cmhblue1225/newmind1',
       status: 'LIVE',
       color: 'from-emerald-500 to-teal-600',
