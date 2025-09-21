@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
-import { ArrowDown, Github, Mail, Phone } from 'lucide-react'
+import { ArrowDown, Mail, Phone } from 'lucide-react'
 
 const Hero = () => {
   const scrollToNext = () => {
@@ -146,7 +146,7 @@ const Hero = () => {
             >
               <Mail size={24} />
             </motion.a>
-            
+
             <motion.a
               href="tel:010-5116-5305"
               whileHover={{ scale: 1.2, y: -5 }}
@@ -154,17 +154,6 @@ const Hero = () => {
               className="p-3 rounded-full bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-600 dark:text-apple-gray-300 hover:text-apple-blue dark:hover:text-apple-blue transition-all duration-200"
             >
               <Phone size={24} />
-            </motion.a>
-            
-            <motion.a
-              href="https://github.com/cmhblue1225"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2, y: -5 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-3 rounded-full bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-600 dark:text-apple-gray-300 hover:text-apple-blue dark:hover:text-apple-blue transition-all duration-200"
-            >
-              <Github size={24} />
             </motion.a>
           </motion.div>
 

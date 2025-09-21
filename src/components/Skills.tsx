@@ -35,7 +35,7 @@ const Skills = () => {
       skills: [
         { name: 'OpenAI API', icon: '🧠' },
         { name: 'ChatGPT Integration', icon: '💬' },
-        { name: 'Git/GitHub', icon: '📁' },
+        { name: 'Git', icon: '📁' },
         { name: 'Vite', icon: '⚡' },
         { name: 'Spotify API', icon: '🎵' },
         { name: 'Sensor APIs', icon: '📡' }

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin } from 'lucide-react'
 
 const Contact = () => {
 
@@ -28,12 +28,6 @@ const Contact = () => {
   ]
 
   const socialLinks = [
-    {
-      name: 'GitHub',
-      icon: <Github className="w-6 h-6" />,
-      href: 'https://github.com/cmhblue1225',
-      color: 'hover:text-gray-900 dark:hover:text-white'
-    },
     {
       name: 'LinkedIn',
       icon: <Linkedin className="w-6 h-6" />,

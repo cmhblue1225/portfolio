@@ -1,12 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { 
-  ExternalLink, 
-  Github, 
-  Play, 
-  Database, 
-  Brain, 
-  Smartphone, 
+import {
+  ExternalLink,
+  Play,
+  Database,
+  Brain,
+  Smartphone,
   Code2,
   FileText,
   ChevronDown,
@@ -377,7 +376,7 @@ const Projects = () => {
         performance: '88%'
       },
       completionRate: '75%',
-      deployUrl: 'https://github.com/cmhblue1225/reviseAI',
+      deployUrl: '#',
       githubUrl: 'https://github.com/cmhblue1225/reviseAI',
       status: 'DEVELOPMENT',
       color: 'from-purple-500 to-pink-500',
@@ -397,7 +396,7 @@ const Projects = () => {
       features: [
         'AI 기반 자동 문서 생성',
         '다양한 문서 템플릿 제공',
-        'GitHub 저장소 연동',
+        '저장소 연동',
         'Markdown 실시간 미리보기',
         'PDF/HTML 내보내기',
         '문서 버전 관리',
@@ -414,13 +413,13 @@ const Projects = () => {
           description: 'README, API 문서, 기술 명세서 등 다양한 개발 문서 템플릿 제공'
         },
         {
-          title: 'GitHub 100% 연동',
-          description: 'GitHub API를 완전히 활용하여 저장소 정보 자동 추출 및 문서 생성'
+          title: '저장소 100% 연동',
+          description: 'API를 완전히 활용하여 저장소 정보 자동 추출 및 문서 생성'
         }
       ],
       troubleshooting: [
         {
-          problem: 'GitHub API 요청 제한으로 인한 데이터 수집 지연',
+          problem: 'API 요청 제한으로 인한 데이터 수집 지연',
           solution: 'API 요청 캐싱 시스템 구축, 배치 처리로 요청 최적화',
           impact: 'API 요청량 50% 감소, 문서 생성 속도 2배 향상'
         },
@@ -437,7 +436,7 @@ const Projects = () => {
         performance: '30s'
       },
       completionRate: '80%',
-      deployUrl: 'https://github.com/cmhblue1225/ai-doc-generator',
+      deployUrl: '#',
       githubUrl: 'https://github.com/cmhblue1225/ai-doc-generator',
       status: 'BETA',
       color: 'from-cyan-500 to-blue-500',
@@ -682,42 +681,40 @@ const Projects = () => {
             {/* 모달 푸터 */}
             <div className="p-6 border-t border-apple-gray-200 dark:border-apple-gray-700 bg-apple-gray-50 dark:bg-apple-gray-800">
               <div className="flex flex-col sm:flex-row gap-3">
-                <motion.a
-                  href={project.deployUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`flex-1 apple-button bg-gradient-to-r ${project.color} text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2`}
-                >
-                  <ExternalLink size={20} />
-                  <span>라이브 데모</span>
-                </motion.a>
-                
-                <motion.a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="flex-1 apple-button border-2 border-apple-gray-300 dark:border-apple-gray-600 text-apple-gray-700 dark:text-apple-gray-300 px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:border-apple-blue hover:text-apple-blue"
-                >
-                  <Github size={20} />
-                  <span>GitHub</span>
-                </motion.a>
+                {project.deployUrl !== '#' ? (
+                  <>
+                    <motion.a
+                      href={project.deployUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`${
+                        project.docsUrl ? 'flex-1' : 'w-full'
+                      } apple-button bg-gradient-to-r ${project.color} text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2`}
+                    >
+                      <ExternalLink size={20} />
+                      <span>라이브 데모</span>
+                    </motion.a>
 
-                {project.docsUrl && (
-                  <motion.a
-                    href={project.docsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex-1 apple-button border-2 border-purple-300 dark:border-purple-600 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:border-purple-500 hover:text-purple-500"
-                  >
-                    <FileText size={20} />
-                    <span>문서</span>
-                  </motion.a>
+                    {project.docsUrl && (
+                      <motion.a
+                        href={project.docsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex-1 apple-button border-2 border-purple-300 dark:border-purple-600 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:border-purple-500 hover:text-purple-500"
+                      >
+                        <FileText size={20} />
+                        <span>문서</span>
+                      </motion.a>
+                    )}
+                  </>
+                ) : (
+                  <div className="w-full px-6 py-3 rounded-xl font-semibold text-center bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-400 dark:text-apple-gray-500">
+                    개발 진행 중
+                  </div>
                 )}
               </div>
             </div>
@@ -998,33 +995,6 @@ const Projects = () => {
         )}
 
         {/* 하단 Call-to-Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center"
-        >
-          <div className="bg-gradient-to-r from-apple-blue/10 to-purple-500/10 dark:from-apple-blue/20 dark:to-purple-500/20 rounded-3xl p-8">
-            <h3 className="text-2xl font-bold text-apple-dark dark:text-white mb-4">
-              더 많은 프로젝트가 궁금하신가요?
-            </h3>
-            <p className="text-apple-gray-600 dark:text-apple-gray-300 mb-6">
-              GitHub에서 더 많은 프로젝트와 코드를 확인하실 수 있습니다
-            </p>
-            <motion.a
-              href="https://github.com/cmhblue1225"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="apple-button bg-apple-dark dark:bg-white text-white dark:text-apple-dark px-8 py-4 rounded-xl font-semibold inline-flex items-center space-x-2"
-            >
-              <Github size={20} />
-              <span>GitHub 방문하기</span>
-            </motion.a>
-          </div>
-        </motion.div>
       </div>
 
       {/* 프로젝트 상세 모달 */}
