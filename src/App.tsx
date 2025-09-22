@@ -7,7 +7,6 @@ import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
-import Footer from './components/Footer'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
@@ -51,12 +50,11 @@ function App() {
       <main>
         <Hero />
         <About />
-        <Skills />
         <Projects />
+        <Skills />
         <Contact />
       </main>
       
-      <Footer />
       
       {/* 스크롤 진행바 */}
       <motion.div
