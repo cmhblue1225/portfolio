@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import {
   ExternalLink,
   Play,
@@ -20,6 +20,18 @@ import {
   Star
 } from 'lucide-react'
 
+// 타입 정의
+type ProjectStatus = 'LIVE' | 'BETA' | 'DEVELOPMENT'
+type TabType = 'overview' | 'achievements' | 'troubleshooting' | 'metrics'
+
+// 상수 정의
+const DISPLAY_LIMITS = {
+  MAIN_FEATURES: 4,
+  MAIN_TECHNOLOGIES: 6,
+  CARD_TECHNOLOGIES: 4,
+  DESCRIPTION_LENGTH: 100
+} as const
+
 interface Project {
   id: number
   title: string
@@ -38,18 +50,16 @@ interface Project {
     impact: string
   }>
   metrics: {
-    completionRate: string
     codeLines: string
     testCoverage?: string
     buildTime?: string
     users?: string
     performance?: string
   }
-  completionRate: string
   deployUrl: string
   githubUrl: string
   docsUrl?: string
-  status: string
+  status: ProjectStatus
   color: string
   icon: React.ReactNode
   featured: boolean
@@ -58,9 +68,137 @@ interface Project {
   team: string
 }
 
+// 재사용 가능한 컴포넌트들
+const StatusBadge = ({ status }: { status: ProjectStatus }) => {
+  const statusConfig = {
+    LIVE: { bg: 'bg-green-100 text-green-800', dotBg: 'bg-green-400' },
+    BETA: { bg: 'bg-blue-100 text-blue-800', dotBg: 'bg-blue-400' },
+    DEVELOPMENT: { bg: 'bg-yellow-100 text-yellow-800', dotBg: 'bg-yellow-400' }
+  }
+
+  const config = statusConfig[status]
+
+  return (
+    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${config.bg}`}>
+      <span className={`w-2 h-2 rounded-full mr-1 animate-pulse ${config.dotBg}`} />
+      {status}
+    </span>
+  )
+}
+
+const TechStack = ({
+  technologies,
+  maxItems,
+  variant = 'default'
+}: {
+  technologies: string[]
+  maxItems: number
+  variant?: 'default' | 'compact'
+}) => {
+  const baseClasses = variant === 'compact'
+    ? 'px-2 py-1 rounded text-xs bg-apple-gray-200 dark:bg-apple-gray-700 text-apple-gray-700 dark:text-apple-gray-300'
+    : 'px-3 py-1 rounded-full text-sm font-medium bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-700 dark:text-apple-gray-300'
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {technologies.slice(0, maxItems).map((tech, index) => (
+        <motion.span
+          key={tech}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: index * 0.05 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.05 }}
+          className={baseClasses}
+        >
+          {tech}
+        </motion.span>
+      ))}
+      {technologies.length > maxItems && (
+        <span className={`${baseClasses} opacity-60`}>
+          +{technologies.length - maxItems}
+        </span>
+      )}
+    </div>
+  )
+}
+
+const shouldShowLiveDemo = (deployUrl: string): boolean => deployUrl !== '#'
+
+const ProjectActions = ({
+  project,
+  onViewDetails,
+  showViewDetails = true
+}: {
+  project: Project
+  onViewDetails: () => void
+  showViewDetails?: boolean
+}) => {
+  const hasLiveDemo = shouldShowLiveDemo(project.deployUrl)
+
+  if (!hasLiveDemo && !showViewDetails) {
+    return (
+      <div className="w-full px-6 py-3 rounded-xl font-semibold text-center bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-400 dark:text-apple-gray-500">
+        개발 진행 중
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex flex-col sm:flex-row gap-3">
+      {showViewDetails && (
+        <motion.button
+          onClick={onViewDetails}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`${
+            hasLiveDemo ? 'flex-1' : 'w-full'
+          } apple-button bg-gradient-to-r ${project.color} text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 shadow-lg`}
+          aria-label={`${project.title} 상세 정보 보기`}
+        >
+          <Play size={20} />
+          <span>상세 보기</span>
+        </motion.button>
+      )}
+
+      {hasLiveDemo && (
+        <motion.a
+          href={project.deployUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`${
+            showViewDetails ? 'flex-1' : 'w-full'
+          } apple-button border-2 border-apple-gray-300 dark:border-apple-gray-600 text-apple-gray-700 dark:text-apple-gray-300 px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:border-apple-blue hover:text-apple-blue transition-colors duration-200`}
+          aria-label={`${project.title} 라이브 데모 보기`}
+        >
+          <ExternalLink size={20} />
+          <span>라이브 데모</span>
+        </motion.a>
+      )}
+
+      {project.docsUrl && (
+        <motion.a
+          href={project.docsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex-1 apple-button border-2 border-purple-300 dark:border-purple-600 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:border-purple-500 hover:text-purple-500"
+          aria-label={`${project.title} 문서 보기`}
+        >
+          <FileText size={20} />
+          <span>문서</span>
+        </motion.a>
+      )}
+    </div>
+  )
+}
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const [activeTab, setActiveTab] = useState('overview')
+  const [activeTab, setActiveTab] = useState<TabType>('overview')
 
   const projects: Project[] = [
     {
@@ -115,12 +253,10 @@ const Projects = () => {
         }
       ],
       metrics: {
-        completionRate: '100%',
         codeLines: '15,000+',
         testCoverage: '85%',
         buildTime: '2min'
       },
-      completionRate: '100%',
       deployUrl: 'https://synapse-doc.netlify.app',
       githubUrl: 'https://github.com/cmhblue1225/synapse-supabase',
       status: 'LIVE',
@@ -180,12 +316,10 @@ const Projects = () => {
         }
       ],
       metrics: {
-        completionRate: '100%',
         codeLines: '25,000+',
         testCoverage: '85%',
         buildTime: '2.3min'
       },
-      completionRate: '98%',
       deployUrl: 'https://convi-final.onrender.com',
       githubUrl: 'https://github.com/cmhblue1225/convi',
       docsUrl: 'https://convi-final.onrender.com/wireframes/docs/index.html',
@@ -246,10 +380,8 @@ const Projects = () => {
         }
       ],
       metrics: {
-        completionRate: '100%',
-        codeLines: '18,000+',
+        codeLines: '18,000+'
       },
-      completionRate: '100%',
       deployUrl: 'https://healing-diary.netlify.app/',
       githubUrl: 'https://github.com/cmhblue1225/newmind1',
       status: 'LIVE',
@@ -311,11 +443,9 @@ const Projects = () => {
         }
       ],
       metrics: {
-        completionRate: '100%',
         codeLines: '15,000+',
         performance: '1,000+'
       },
-      completionRate: '100%',
       deployUrl: 'https://sensorchatbot.onrender.com',
       githubUrl: 'https://github.com/cmhblue1225/sensorchatbot',
       status: 'LIVE',
@@ -370,12 +500,10 @@ const Projects = () => {
         }
       ],
       metrics: {
-        completionRate: '75%',
         codeLines: '12,000+',
         testCoverage: '5',
         performance: '88%'
       },
-      completionRate: '75%',
       deployUrl: '#',
       githubUrl: 'https://github.com/cmhblue1225/reviseAI',
       status: 'DEVELOPMENT',
@@ -430,12 +558,10 @@ const Projects = () => {
         }
       ],
       metrics: {
-        completionRate: '80%',
         codeLines: '8,000+',
         testCoverage: '10',
         performance: '30s'
       },
-      completionRate: '80%',
       deployUrl: '#',
       githubUrl: 'https://github.com/cmhblue1225/ai-doc-generator',
       status: 'BETA',
@@ -445,8 +571,23 @@ const Projects = () => {
     }
   ]
 
-  const featuredProjects = projects.filter(p => p.featured)
-  const otherProjects = projects.filter(p => !p.featured)
+  // 성능 최적화: 메모이제이션
+  const featuredProjects = useMemo(() => projects.filter(p => p.featured), [projects])
+  const otherProjects = useMemo(() => projects.filter(p => !p.featured), [projects])
+
+  // 콜백 메모이제이션
+  const handleProjectSelect = useCallback((project: Project) => {
+    setSelectedProject(project)
+  }, [])
+
+  const handleCloseModal = useCallback(() => {
+    setSelectedProject(null)
+    setActiveTab('overview')
+  }, [])
+
+  const handleTabChange = useCallback((tab: TabType) => {
+    setActiveTab(tab)
+  }, [])
 
   const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
     const tabs = [
@@ -496,7 +637,7 @@ const Projects = () => {
                   <div>
                     <h5 className="font-semibold text-apple-dark dark:text-white mb-3">주요 기능</h5>
                     <div className="space-y-2">
-                      {project.features.slice(0, 4).map((feature, index) => (
+                      {project.features.slice(0, DISPLAY_LIMITS.MAIN_FEATURES).map((feature, index) => (
                         <div key={index} className="flex items-center text-sm text-apple-gray-600 dark:text-apple-gray-300">
                           <CheckCircle className="mr-2 text-green-500" size={14} />
                           {feature}
@@ -659,7 +800,7 @@ const Projects = () => {
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => handleTabChange(tab.id)}
                     className={`flex-1 flex items-center justify-center px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                       activeTab === tab.id
                         ? 'bg-white dark:bg-apple-gray-700 text-apple-blue shadow-sm'
@@ -680,43 +821,11 @@ const Projects = () => {
 
             {/* 모달 푸터 */}
             <div className="p-6 border-t border-apple-gray-200 dark:border-apple-gray-700 bg-apple-gray-50 dark:bg-apple-gray-800">
-              <div className="flex flex-col sm:flex-row gap-3">
-                {project.deployUrl !== '#' ? (
-                  <>
-                    <motion.a
-                      href={project.deployUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`${
-                        project.docsUrl ? 'flex-1' : 'w-full'
-                      } apple-button bg-gradient-to-r ${project.color} text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2`}
-                    >
-                      <ExternalLink size={20} />
-                      <span>라이브 데모</span>
-                    </motion.a>
-
-                    {project.docsUrl && (
-                      <motion.a
-                        href={project.docsUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="flex-1 apple-button border-2 border-purple-300 dark:border-purple-600 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:border-purple-500 hover:text-purple-500"
-                      >
-                        <FileText size={20} />
-                        <span>문서</span>
-                      </motion.a>
-                    )}
-                  </>
-                ) : (
-                  <div className="w-full px-6 py-3 rounded-xl font-semibold text-center bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-400 dark:text-apple-gray-500">
-                    개발 진행 중
-                  </div>
-                )}
-              </div>
+              <ProjectActions
+                project={project}
+                onViewDetails={() => {}}
+                showViewDetails={false}
+              />
             </div>
           </motion.div>
         </motion.div>
@@ -765,26 +874,9 @@ const Projects = () => {
                 <div className="relative overflow-hidden rounded-3xl shadow-2xl group">
                   {/* 상태 배지 */}
                   <div className="absolute top-4 left-4 z-10">
-                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
-                      project.status === 'LIVE' ? 'bg-green-100 text-green-800' :
-                      project.status === 'BETA' ? 'bg-blue-100 text-blue-800' :
-                      'bg-yellow-100 text-yellow-800'
-                    }`}>
-                      <span className={`w-2 h-2 rounded-full mr-1 animate-pulse ${
-                        project.status === 'LIVE' ? 'bg-green-400' :
-                        project.status === 'BETA' ? 'bg-blue-400' :
-                        'bg-yellow-400'
-                      }`}></span>
-                      {project.status}
-                    </span>
+                    <StatusBadge status={project.status} />
                   </div>
                   
-                  {/* 완성도 배지 */}
-                  <div className="absolute top-4 right-4 z-10">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                      완성도 {project.completionRate}
-                    </span>
-                  </div>
 
                   {/* 이미지 플레이스홀더 */}
                   <div className={`aspect-video bg-gradient-to-br ${project.color} flex items-center justify-center`}>
@@ -828,7 +920,7 @@ const Projects = () => {
                 {/* 주요 기능 미리보기 */}
                 <div>
                   <h4 className="text-lg font-semibold text-apple-dark dark:text-white mb-3">
-                    🎯 주요 기능
+                     주요 기능
                   </h4>
                   <ul className="space-y-2">
                     {project.features.slice(0, 4).map((feature, featureIndex) => (
@@ -845,12 +937,12 @@ const Projects = () => {
                       </motion.li>
                     ))}
                   </ul>
-                  {project.features.length > 4 && (
+                  {project.features.length > DISPLAY_LIMITS.MAIN_FEATURES && (
                     <button
-                      onClick={() => setSelectedProject(project)}
+                      onClick={() => handleProjectSelect(project)}
                       className="text-apple-blue hover:text-apple-blue/80 text-sm mt-2 flex items-center"
                     >
-                      +{project.features.length - 4}개 더 보기
+                      +{project.features.length - DISPLAY_LIMITS.MAIN_FEATURES}개 더 보기
                       <ChevronDown size={16} className="ml-1" />
                     </button>
                   )}
@@ -859,10 +951,10 @@ const Projects = () => {
                 {/* 기술 스택 미리보기 */}
                 <div>
                   <h4 className="text-lg font-semibold text-apple-dark dark:text-white mb-3">
-                    ⚡ 기술 스택
+                     기술 스택
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 6).map((tech, techIndex) => (
+                    {project.technologies.slice(0, DISPLAY_LIMITS.MAIN_TECHNOLOGIES).map((tech, techIndex) => (
                       <motion.span
                         key={techIndex}
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -875,38 +967,20 @@ const Projects = () => {
                         {tech}
                       </motion.span>
                     ))}
-                    {project.technologies.length > 6 && (
+                    {project.technologies.length > DISPLAY_LIMITS.MAIN_TECHNOLOGIES && (
                       <span className="px-3 py-1 bg-apple-gray-200 dark:bg-apple-gray-600 text-apple-gray-600 dark:text-apple-gray-400 rounded-full text-sm">
-                        +{project.technologies.length - 6}
+                        +{project.technologies.length - DISPLAY_LIMITS.MAIN_TECHNOLOGIES}
                       </span>
                     )}
                   </div>
                 </div>
 
                 {/* 액션 버튼들 */}
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <motion.button
-                    onClick={() => setSelectedProject(project)}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`apple-button bg-gradient-to-r ${project.color} text-white px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 shadow-lg`}
-                  >
-                    <Play size={20} />
-                    <span>상세 보기</span>
-                  </motion.button>
-                  
-                  <motion.a
-                    href={project.deployUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="apple-button border-2 border-apple-gray-300 dark:border-apple-gray-600 text-apple-gray-700 dark:text-apple-gray-300 px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:border-apple-blue hover:text-apple-blue transition-colors duration-200"
-                  >
-                    <ExternalLink size={20} />
-                    <span>라이브 데모</span>
-                  </motion.a>
-                </div>
+                <ProjectActions
+                  project={project}
+                  onViewDetails={() => handleProjectSelect(project)}
+                  showViewDetails={true}
+                />
               </motion.div>
             </motion.div>
           ))}
@@ -934,7 +1008,7 @@ const Projects = () => {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   className="bg-apple-gray-50 dark:bg-apple-gray-800 rounded-3xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer border border-apple-gray-200 dark:border-apple-gray-700"
-                  onClick={() => setSelectedProject(project)}
+                  onClick={() => handleProjectSelect(project)}
                 >
                   <div className="flex items-start space-x-4 mb-4">
                     <div className={`p-3 rounded-xl bg-gradient-to-r ${project.color} text-white flex-shrink-0`}>
@@ -947,43 +1021,26 @@ const Projects = () => {
                       <p className="text-apple-gray-600 dark:text-apple-gray-300 text-sm mb-2">
                         {project.subtitle}
                       </p>
-                      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                        project.status === 'LIVE' ? 'bg-green-100 text-green-800' :
-                        project.status === 'BETA' ? 'bg-blue-100 text-blue-800' :
-                        'bg-yellow-100 text-yellow-800'
-                      }`}>
-                        {project.status}
-                      </span>
+                      <StatusBadge status={project.status} />
                     </div>
                   </div>
                   
                   <p className="text-apple-gray-600 dark:text-apple-gray-400 text-sm leading-relaxed mb-4">
-                    {project.description.length > 100 
-                      ? `${project.description.substring(0, 100)}...` 
+                    {project.description.length > DISPLAY_LIMITS.DESCRIPTION_LENGTH
+                      ? `${project.description.substring(0, DISPLAY_LIMITS.DESCRIPTION_LENGTH)}...`
                       : project.description
                     }
                   </p>
                   
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {project.technologies.slice(0, 4).map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-2 py-1 bg-apple-gray-200 dark:bg-apple-gray-700 text-apple-gray-700 dark:text-apple-gray-300 rounded text-xs"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 4 && (
-                      <span className="px-2 py-1 bg-apple-gray-300 dark:bg-apple-gray-600 text-apple-gray-600 dark:text-apple-gray-400 rounded text-xs">
-                        +{project.technologies.length - 4}
-                      </span>
-                    )}
+                  <div className="mb-4">
+                    <TechStack
+                      technologies={project.technologies}
+                      maxItems={DISPLAY_LIMITS.CARD_TECHNOLOGIES}
+                      variant="compact"
+                    />
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm text-apple-gray-500 dark:text-apple-gray-400">
-                      완성도 {project.completionRate}
-                    </div>
+                  <div className="flex justify-end">
                     <div className="text-apple-blue hover:text-apple-blue/80 text-sm font-medium">
                       상세 보기 →
                     </div>
