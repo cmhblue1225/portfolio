@@ -141,24 +141,6 @@ const Contact = () => {
           
         </div>
 
-        {/* 하단 추가 정보 */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <div className="bg-gradient-to-r from-apple-blue/10 to-purple-500/10 dark:from-apple-blue/20 dark:to-purple-500/20 rounded-3xl p-8">
-            <h3 className="text-xl font-bold text-apple-dark dark:text-white mb-4">
-              💼 현재 구직 중입니다
-            </h3>
-            <p className="text-apple-gray-600 dark:text-apple-gray-300">
-              AI 및 웹 풀스택 개발 포지션에 관심이 있습니다. 
-              새로운 도전과 성장 기회를 찾고 있으니 언제든지 연락주세요!
-            </p>
-          </div>
-        </motion.div>
       </div>
     </section>
   )

@@ -590,7 +590,7 @@ const Projects = () => {
   }, [])
 
   const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
-    const tabs = [
+    const tabs: Array<{ id: TabType; label: string; icon: React.ReactNode }> = [
       { id: 'overview', label: '개요', icon: <Layers size={16} /> },
       { id: 'achievements', label: '성과', icon: <Award size={16} /> },
       { id: 'troubleshooting', label: '트러블슈팅', icon: <Bug size={16} /> },
@@ -1058,10 +1058,7 @@ const Projects = () => {
       {selectedProject && (
         <ProjectModal
           project={selectedProject}
-          onClose={() => {
-            setSelectedProject(null)
-            setActiveTab('overview')
-          }}
+          onClose={handleCloseModal}
         />
       )}
     </section>
