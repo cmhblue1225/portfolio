@@ -257,7 +257,7 @@ const Projects = () => {
         testCoverage: '85%',
         buildTime: '2min'
       },
-      deployUrl: 'https://synapse-doc.netlify.app',
+      deployUrl: 'https://synapse.minhyuk.kr',
       githubUrl: 'https://github.com/cmhblue1225/synapse-supabase',
       status: 'LIVE',
       color: 'from-purple-500 to-indigo-600',
@@ -382,7 +382,7 @@ const Projects = () => {
       metrics: {
         codeLines: '18,000+'
       },
-      deployUrl: 'https://healing-diary.netlify.app/',
+      deployUrl: 'https://minhyuk.kr',
       githubUrl: 'https://github.com/cmhblue1225/newmind1',
       status: 'LIVE',
       color: 'from-emerald-500 to-teal-600',
@@ -1058,7 +1058,10 @@ const Projects = () => {
       {selectedProject && (
         <ProjectModal
           project={selectedProject}
-          onClose={handleCloseModal}
+          onClose={() => {
+            setSelectedProject(null)
+            setActiveTab('overview')
+          }}
         />
       )}
     </section>
