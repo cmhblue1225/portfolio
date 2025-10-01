@@ -580,11 +580,6 @@ const Projects = () => {
     setSelectedProject(project)
   }, [])
 
-  const handleCloseModal = useCallback(() => {
-    setSelectedProject(null)
-    setActiveTab('overview')
-  }, [])
-
   const handleTabChange = useCallback((tab: TabType) => {
     setActiveTab(tab)
   }, [])
