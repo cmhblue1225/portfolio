@@ -320,7 +320,7 @@ const Projects = () => {
         testCoverage: '85%',
         buildTime: '2.3min'
       },
-      deployUrl: 'https://convi-final.onrender.com',
+      deployUrl: 'https://convi.minhyuk.kr',
       githubUrl: 'https://github.com/cmhblue1225/convi',
       docsUrl: 'https://convi-final.onrender.com/wireframes/docs/index.html',
       status: 'LIVE',
@@ -382,7 +382,7 @@ const Projects = () => {
       metrics: {
         codeLines: '18,000+'
       },
-      deployUrl: 'https://minhyuk.kr',
+      deployUrl: 'https://diary.minhyuk.kr',
       githubUrl: 'https://github.com/cmhblue1225/newmind1',
       status: 'LIVE',
       color: 'from-emerald-500 to-teal-600',
