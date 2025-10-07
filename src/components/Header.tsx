@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Sun, Moon, Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import { trackDarkModeToggle, trackNavigation } from '../utils/analytics'
 
 interface HeaderProps {
   darkMode: boolean
@@ -22,8 +23,16 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderProps) => {
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
+      // 네비게이션 클릭 이벤트 추적
+      trackNavigation(href.replace('#', ''))
     }
     setIsMenuOpen(false)
+  }
+
+  const handleDarkModeToggle = () => {
+    toggleDarkMode()
+    // 다크모드 토글 이벤트 추적
+    trackDarkModeToggle(!darkMode)
   }
 
   return (
@@ -59,7 +68,7 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderProps) => {
             
             {/* 다크모드 토글 */}
             <motion.button
-              onClick={toggleDarkMode}
+              onClick={handleDarkModeToggle}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="p-2 rounded-full bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-600 dark:text-apple-gray-300 hover:text-apple-blue dark:hover:text-apple-blue transition-all duration-200"
@@ -71,7 +80,7 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderProps) => {
           {/* 모바일 메뉴 버튼 */}
           <div className="md:hidden flex items-center space-x-4">
             <motion.button
-              onClick={toggleDarkMode}
+              onClick={handleDarkModeToggle}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="p-2 rounded-full bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-600 dark:text-apple-gray-300"

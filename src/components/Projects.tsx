@@ -19,6 +19,7 @@ import {
   Clock,
   Star
 } from 'lucide-react'
+import { trackProjectClick } from '../utils/analytics'
 
 // 타입 정의
 type ProjectStatus = 'LIVE' | 'BETA' | 'DEVELOPMENT'
@@ -166,6 +167,7 @@ const ProjectActions = ({
           href={project.deployUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackProjectClick(project.title, 'live_demo')}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className={`${
@@ -183,6 +185,7 @@ const ProjectActions = ({
           href={project.docsUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackProjectClick(project.title, 'docs')}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="flex-1 apple-button border-2 border-purple-300 dark:border-purple-600 text-purple-700 dark:text-purple-300 px-6 py-3 rounded-xl font-semibold flex items-center justify-center space-x-2 hover:border-purple-500 hover:text-purple-500"
@@ -578,6 +581,7 @@ const Projects = () => {
   // 콜백 메모이제이션
   const handleProjectSelect = useCallback((project: Project) => {
     setSelectedProject(project)
+    trackProjectClick(project.title, 'view_details')
   }, [])
 
   const handleTabChange = useCallback((tab: TabType) => {

@@ -10,7 +10,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
+          vendor: ['react', 'react-dom', 'react-ga4'],
           animations: ['framer-motion', 'gsap'],
           ui: ['lucide-react', 'react-type-animation']
         }

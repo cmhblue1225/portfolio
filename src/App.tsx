@@ -7,6 +7,7 @@ import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
+import { initGA } from './utils/analytics'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false)
@@ -18,6 +19,9 @@ function App() {
   })
 
   useEffect(() => {
+    // Google Analytics 초기화
+    initGA()
+
     // 시스템 다크모드 감지
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     setDarkMode(mediaQuery.matches)

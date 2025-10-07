@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Linkedin } from 'lucide-react'
+import { trackContactClick } from '../utils/analytics'
 
 const Contact = () => {
 
@@ -9,21 +10,24 @@ const Contact = () => {
       title: '이메일',
       value: 'cmhblue1225@naver.com',
       href: 'mailto:cmhblue1225@naver.com',
-      description: '언제든지 연락주세요'
+      description: '언제든지 연락주세요',
+      type: 'email' as const
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: '전화번호',
       value: '010-5116-5305',
       href: 'tel:010-5116-5305',
-      description: '항상 가능'
+      description: '항상 가능',
+      type: 'phone' as const
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: '위치',
       value: '대한민국 서울',
       href: '#',
-      description: '대한민국 전국 근무 가능'
+      description: '대한민국 전국 근무 가능',
+      type: null
     }
   ]
 
@@ -32,13 +36,15 @@ const Contact = () => {
       name: 'LinkedIn',
       icon: <Linkedin className="w-6 h-6" />,
       href: 'https://linkedin.com',
-      color: 'hover:text-blue-600'
+      color: 'hover:text-blue-600',
+      type: 'linkedin' as const
     },
     {
       name: 'Email',
       icon: <Mail className="w-6 h-6" />,
       href: 'mailto:cmhblue1225@naver.com',
-      color: 'hover:text-red-500'
+      color: 'hover:text-red-500',
+      type: 'email' as const
     }
   ]
 
@@ -84,6 +90,7 @@ const Contact = () => {
                 <motion.a
                   key={info.title}
                   href={info.href}
+                  onClick={info.type ? () => trackContactClick(info.type!) : undefined}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -127,6 +134,7 @@ const Contact = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackContactClick(social.type)}
                     whileHover={{ scale: 1.2, y: -5 }}
                     whileTap={{ scale: 0.9 }}
                     className={`p-3 rounded-full bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-600 dark:text-apple-gray-300 ${social.color} transition-all duration-200`}
