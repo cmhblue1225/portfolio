@@ -17,7 +17,8 @@ import {
   Layers,
   Users,
   Clock,
-  Star
+  Star,
+  BookOpen
 } from 'lucide-react'
 import { trackProjectClick } from '../utils/analytics'
 
@@ -458,6 +459,69 @@ const Projects = () => {
     },
     {
       id: 5,
+      title: '독독 (DockDock) - 독서 관리 플랫폼',
+      subtitle: '똑똑한 독서 습관, 독독하자',
+      description: '독서 기록, 진행 상황 추적, AI 기반 맞춤 책 추천까지 제공하는 종합 독서 관리 플랫폼입니다. React 19와 Supabase를 활용한 웹/iOS 크로스 플랫폼 서비스입니다.',
+      image: '/api/placeholder/800/500',
+      category: '독서 관리, AI 추천',
+      period: '2025.10 - 현재',
+      team: '개인 프로젝트 (iOS 협업)',
+      technologies: ['React 19', 'TypeScript', 'Node.js', 'Express', 'Supabase', 'OpenAI GPT-4o', 'TanStack Query', 'Zustand', 'Tailwind CSS', 'Aladin API', 'Swagger', 'Railway', 'Netlify'],
+      features: [
+        '알라딘 API 연동 국내 전체 도서 검색',
+        '독서 진행률 추적 및 기록 시스템',
+        'AI 기반 개인화 도서 추천 (OpenAI GPT-4o)',
+        'Supabase Storage 사진 첨부 기능',
+        '별점/리뷰/키워드 태그 시스템',
+        '독서 통계 및 분석 대시보드',
+        'Apple/Kakao 소셜 로그인 지원',
+        '완전한 Swagger API 문서 (Swift 예시 포함)'
+      ],
+      achievements: [
+        {
+          title: 'MVP 프로덕션 배포 완료',
+          description: '웹과 iOS를 위한 RESTful API 완전 구축 및 Railway/Netlify 배포 완료'
+        },
+        {
+          title: 'API-First 설계 완성',
+          description: '모든 엔드포인트에 Swift 구현 예시를 포함한 완벽한 Swagger 문서화로 iOS 개발자 협업 최적화'
+        },
+        {
+          title: 'AI 추천 시스템 구현',
+          description: 'OpenAI GPT-4o를 활용한 개인화 추천, 트렌딩 책, 유사 책 추천 시스템 및 24시간 캐싱 최적화'
+        }
+      ],
+      troubleshooting: [
+        {
+          problem: '추천 API와 책 상세 API 간 ID 불일치 문제',
+          solution: 'books 테이블에 aladin_id 컬럼 추가, 추천 응답에 aladinId 필드 포함하여 프론트엔드에서 유연하게 처리',
+          impact: 'API 일관성 확보 및 프론트엔드 에러 완전 해결'
+        },
+        {
+          problem: '소셜 로그인 iOS 연동 복잡성',
+          solution: 'Supabase Auth를 활용한 통합 인증 시스템 구축, ID Token 기반 소셜 로그인 API 엔드포인트 추가',
+          impact: 'Apple/Kakao 로그인 iOS 연동 완성'
+        },
+        {
+          problem: 'AI 추천 성능 및 비용 최적화',
+          solution: 'Redis 기반 24시간 캐싱 시스템, 청크 단위 텍스트 처리, 효율적 GPT 모델 선택 전략',
+          impact: 'API 응답 속도 개선 및 OpenAI 비용 절감'
+        }
+      ],
+      metrics: {
+        codeLines: '20,000+',
+        buildTime: '2.5min'
+      },
+      deployUrl: 'https://dockdock.minhyuk.kr',
+      githubUrl: 'https://github.com/cmhblue1225/dockdock',
+      docsUrl: 'https://dockdock-production.up.railway.app/api-docs',
+      status: 'LIVE',
+      color: 'from-green-500 to-emerald-600',
+      icon: <BookOpen className="w-8 h-8" />,
+      featured: true
+    },
+    {
+      id: 6,
       title: 'ReviseAI - AI 코드 리뷰 도구',
       subtitle: 'AI가 제안하는 더 나은 코드',
       description: 'OpenAI API를 활용한 자동 코드 리뷰 및 최적화 제안 도구입니다. 코드 품질 향상과 베스트 프랙티스 준수를 위한 AI 어시스턴트 역할을 합니다.',
@@ -515,7 +579,7 @@ const Projects = () => {
       featured: false
     },
     {
-      id: 6,
+      id: 7,
       title: 'AI Doc Generator - 문서 자동 생성',
       subtitle: '개발자를 위한 스마트 문서 도구',
       description: 'Next.js와 AI를 결합한 개발 문서 자동 생성 도구입니다. 코드 주석과 구조를 분석하여 API 문서, README, 기술 명세서를 자동으로 생성합니다.',
