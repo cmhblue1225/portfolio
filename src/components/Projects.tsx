@@ -300,7 +300,7 @@ const VideoPlayer = ({ videos }: { videos: string[] }) => {
       {/* 비디오 선택 버튼 (영상이 2개 이상일 때만) */}
       {videos.length > 1 && (
         <div className="flex gap-2 overflow-x-auto">
-          {videos.map((video, index) => (
+          {videos.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentVideoIndex(index)}
