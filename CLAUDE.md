@@ -6,6 +6,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 이 프로젝트는 **React 19 + TypeScript + Vite**로 구축된 개인 포트폴리오 웹사이트입니다. **Apple Design System**을 모티브로 한 모던하고 인터랙티브한 단일 페이지 애플리케이션입니다.
 
+## 🗄️ Supabase 백엔드 정보
+
+### 프로젝트 상세
+- **Project ID**: `ddilbfhvzadnlaabjfdr`
+- **Project Name**: portpolio
+- **Organization ID**: `scsmeukssggtdkbznxpi`
+- **Region**: ap-northeast-2 (서울)
+- **Status**: ACTIVE_HEALTHY
+- **Database Host**: db.ddilbfhvzadnlaabjfdr.supabase.co
+- **PostgreSQL Version**: 17.6.1.021
+- **생성일**: 2025-10-17
+
+### Supabase 작업 시 주의사항
+- Supabase MCP를 통해 프로젝트에 직접 연결되어 있습니다
+- 데이터베이스 작업 시 `ddilbfhvzadnlaabjfdr` 프로젝트 ID를 사용하세요
+- 모든 Supabase 관련 작업은 MCP 도구를 활용하여 수행합니다
+
 ## 🚀 개발 명령어
 
 ### 일반적인 개발 명령어

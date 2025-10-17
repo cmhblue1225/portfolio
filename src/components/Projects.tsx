@@ -18,7 +18,11 @@ import {
   Users,
   Clock,
   Star,
-  BookOpen
+  BookOpen,
+  ChevronLeft,
+  ChevronRight,
+  ZoomIn,
+  Image as ImageIcon
 } from 'lucide-react'
 import { trackProjectClick } from '../utils/analytics'
 
@@ -68,6 +72,10 @@ interface Project {
   category: string
   period: string
   team: string
+  media?: {
+    images?: string[]  // Supabase Storage 이미지 URLs
+    videos?: string[]  // Supabase Storage 영상 URLs
+  }
 }
 
 // 재사용 가능한 컴포넌트들
@@ -120,6 +128,192 @@ const TechStack = ({
         <span className={`${baseClasses} opacity-60`}>
           +{technologies.length - maxItems}
         </span>
+      )}
+    </div>
+  )
+}
+
+// 이미지 갤러리 슬라이더 컴포넌트
+const ImageGallery = ({ images }: { images: string[] }) => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+
+  if (!images || images.length === 0) return null
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
+  }
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
+  }
+
+  return (
+    <>
+      {/* 메인 갤러리 */}
+      <div className="relative group">
+        {/* 이미지 컨테이너 */}
+        <div className="relative aspect-video rounded-2xl overflow-hidden bg-apple-gray-100 dark:bg-apple-gray-800">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={currentIndex}
+              src={images[currentIndex]}
+              alt={`Gallery image ${currentIndex + 1}`}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.3 }}
+              className="w-full h-full object-contain cursor-zoom-in"
+              onClick={() => setLightboxOpen(true)}
+            />
+          </AnimatePresence>
+
+          {/* 좌우 화살표 (이미지가 2개 이상일 때만) */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={goToPrevious}
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/80 dark:bg-apple-gray-800/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white dark:hover:bg-apple-gray-700"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-6 h-6 text-apple-gray-900 dark:text-white" />
+              </button>
+              <button
+                onClick={goToNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/80 dark:bg-apple-gray-800/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white dark:hover:bg-apple-gray-700"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-6 h-6 text-apple-gray-900 dark:text-white" />
+              </button>
+            </>
+          )}
+
+          {/* 확대 아이콘 */}
+          <div className="absolute top-4 right-4 p-2 rounded-full bg-white/80 dark:bg-apple-gray-800/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity">
+            <ZoomIn className="w-5 h-5 text-apple-gray-900 dark:text-white" />
+          </div>
+        </div>
+
+        {/* 인디케이터 (이미지가 2개 이상일 때만) */}
+        {images.length > 1 && (
+          <div className="flex justify-center gap-2 mt-4">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-2 rounded-full transition-all ${
+                  index === currentIndex
+                    ? 'w-8 bg-apple-blue'
+                    : 'w-2 bg-apple-gray-300 dark:bg-apple-gray-600 hover:bg-apple-gray-400 dark:hover:bg-apple-gray-500'
+                }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Lightbox 모달 */}
+      <AnimatePresence>
+        {lightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-black/95 flex items-center justify-center p-4"
+            onClick={() => setLightboxOpen(false)}
+          >
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              aria-label="Close lightbox"
+            >
+              <X className="w-6 h-6 text-white" />
+            </button>
+
+            <motion.img
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              src={images[currentIndex]}
+              alt={`Gallery image ${currentIndex + 1} - full size`}
+              className="max-w-full max-h-full object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    goToPrevious()
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft className="w-8 h-8 text-white" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    goToNext()
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                  aria-label="Next image"
+                >
+                  <ChevronRight className="w-8 h-8 text-white" />
+                </button>
+              </>
+            )}
+
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm">
+              {currentIndex + 1} / {images.length}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
+
+// 영상 플레이어 컴포넌트
+const VideoPlayer = ({ videos }: { videos: string[] }) => {
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0)
+
+  if (!videos || videos.length === 0) return null
+
+  return (
+    <div className="space-y-4">
+      {/* 비디오 플레이어 */}
+      <div className="relative aspect-video rounded-2xl overflow-hidden bg-apple-gray-900">
+        <video
+          key={videos[currentVideoIndex]}
+          controls
+          className="w-full h-full"
+          preload="metadata"
+        >
+          <source src={videos[currentVideoIndex]} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      {/* 비디오 선택 버튼 (영상이 2개 이상일 때만) */}
+      {videos.length > 1 && (
+        <div className="flex gap-2 overflow-x-auto">
+          {videos.map((video, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentVideoIndex(index)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+                index === currentVideoIndex
+                  ? 'bg-apple-blue text-white'
+                  : 'bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-700 dark:text-apple-gray-300 hover:bg-apple-gray-200 dark:hover:bg-apple-gray-600'
+              }`}
+            >
+              영상 {index + 1}
+            </button>
+          ))}
+        </div>
       )}
     </div>
   )
@@ -207,6 +401,75 @@ const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
+      title: 'Sensor Game Hub - 센서 게임 플랫폼',
+      subtitle: '새로운 게임 경험의 창조',
+      description: '모바일 센서를 활용한 혁신적인 게임 플랫폼입니다. QR 코드로 간편하게 연결하고, 기울이기와 회전으로 다양한 게임을 즐길 수 있는 멀티플레이어 지원 게임 허브입니다.',
+      image: '/api/placeholder/800/500',
+      category: '게임 플랫폼, AI',
+      period: '2025.08 - 2025.09',
+      team: '개인 프로젝트',
+      technologies: ['Node.js', 'Socket.IO', 'Express.js', 'OpenAI API', 'Anthropic API','Canvas API', 'WebSocket', 'QR Code', 'Device Motion API', 'Render'],
+      features: [
+        '실시간 멀티플레이어 게임 (최대 10명)',
+        'ai 기반 대화형 매뉴얼 시스템(RAG)',
+        '멀티턴 대화를 통해 게임 생성 기능 구현',
+        'QR 코드 기반 원터치 연결 시스템',
+        '모바일 센서(가속도, 자이로) 활용',
+        '독립적인 게임 세션 관리',
+        'Solo/Dual/Multi 다양한 게임 모드',
+        '실시간 점수 및 랭킹 시스템',
+        '게임 결과 히스토리 저장',
+        '반응형 게임 UI/UX'
+      ],
+      achievements: [
+        {
+          title: '완성도 100% 달성',
+          description: '5종류 게임을 포함한 완전한 멀티플레이어 게임 플랫폼 구축'
+        },
+        {
+          title: '동시 접속자 10명 지원',
+          description: 'Socket.IO를 활용한 실시간 멀티플레이어 게임 시스템 구현'
+        },
+        {
+          title: '웹소켓 높은 연결 안정성',
+          description: '재연결 로직과 heartbeat 시스템으로 안정적인 실시간 통신 보장'
+        }
+      ],
+      troubleshooting: [
+        {
+          problem: '웹소켓 연결 불안정 및 끊김 현상',
+          solution: 'Socket.IO의 재연결 로직 강화, heartbeat 간격 최적화, 네트워크 상태 모니터링 구현',
+          impact: '연결 안정성 개선'
+        },
+        {
+          problem: '센서 데이터 지연으로 인한 게임 반응성 저하',
+          solution: '센서 데이터 버퍼링 및 예측 알고리즘 적용, 클라이언트 사이드 보간법 구현',
+          impact: '게임 반응 속도 단축, 사용자 만족도 향상'
+        },
+        {
+          problem: '다중 세션 관리 시 메모리 누수 문제',
+          solution: '세션별 리소스 정리 자동화, 가비지 컬렉션 최적화, 메모리 사용량 모니터링 추가',
+          impact: '메모리 사용량 감소, 서버 안정성 확보'
+        }
+      ],
+      metrics: {
+        codeLines: '15,000+',
+        performance: '1,000+'
+      },
+      deployUrl: 'https://sensorchatbot.minhyuk.kr',
+      githubUrl: 'https://github.com/cmhblue1225/sensorchatbot',
+      status: 'LIVE',
+      color: 'from-orange-500 to-red-500',
+      icon: <Smartphone className="w-8 h-8" />,
+      featured: true,
+      media: {
+        videos: [
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/sensorgamehub/sensorgamehub-demo.mp4'
+        ]
+      }
+    },
+    {
+      id: 2,
       title: 'Synapse AI - 지능형 지식 관리 시스템',
       subtitle: '개인 지식을 구조화하고 관리하는 차세대 AI 기반 시스템',
       description: '완전 자동화된 PDF 처리, AI 요약, 벡터 검색, 실시간 지식 그래프를 제공하는 혁신적인 지식 관리 플랫폼입니다. Supabase Edge Functions와 OpenAI를 활용한 엔터프라이즈급 솔루션입니다.',
@@ -269,7 +532,7 @@ const Projects = () => {
       featured: true
     },
     {
-      id: 2,
+      id: 3,
       title: 'Convi - 편의점 종합 솔루션',
       subtitle: '디지털 혁신으로 편의점을 재정의하다',
       description: '완전한 상용 수준의 편의점 통합 관리 플랫폼입니다. 고객, 점주, 본사가 실시간으로 연결되어 주문부터 재고 관리, 매출 분석까지 모든 비즈니스 프로세스를 자동화합니다.',
@@ -330,10 +593,15 @@ const Projects = () => {
       status: 'LIVE',
       color: 'from-blue-500 to-indigo-600',
       icon: <Database className="w-8 h-8" />,
-      featured: true
+      featured: true,
+      media: {
+        videos: [
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/convi/convi-demo.mp4'
+        ]
+      }
     },
     {
-      id: 3,
+      id: 4,
       title: 'NewMind - 감정 AI 상담 서비스',
       subtitle: '감정을 이해하는 인공지능 상담사',
       description: 'OpenAI GPT API를 활용한 감정 분석 및 AI 상담 서비스입니다. 사용자의 일기를 분석하여 감정 상태를 파악하고, 일기를 기반으로 상담 및 맞춤형 피드백과 Spotify 음악 추천을 제공합니다.',
@@ -391,70 +659,6 @@ const Projects = () => {
       status: 'LIVE',
       color: 'from-emerald-500 to-teal-600',
       icon: <Brain className="w-8 h-8" />,
-      featured: true
-    },
-    {
-      id: 4,
-      title: 'Sensor Game Hub - 센서 게임 플랫폼',
-      subtitle: '새로운 게임 경험의 창조',
-      description: '모바일 센서를 활용한 혁신적인 게임 플랫폼입니다. QR 코드로 간편하게 연결하고, 기울이기와 회전으로 다양한 게임을 즐길 수 있는 멀티플레이어 지원 게임 허브입니다.',
-      image: '/api/placeholder/800/500',
-      category: '게임 플랫폼, AI',
-      period: '2025.08 - 2025.09',
-      team: '개인 프로젝트',
-      technologies: ['Node.js', 'Socket.IO', 'Express.js', 'OpenAI API', 'Anthropic API','Canvas API', 'WebSocket', 'QR Code', 'Device Motion API', 'Render'],
-      features: [
-        '실시간 멀티플레이어 게임 (최대 10명)',
-        'ai 기반 대화형 매뉴얼 시스템(RAG)',
-        '멀티턴 대화를 통해 게임 생성 기능 구현',
-        'QR 코드 기반 원터치 연결 시스템',
-        '모바일 센서(가속도, 자이로) 활용',
-        '독립적인 게임 세션 관리',
-        'Solo/Dual/Multi 다양한 게임 모드',
-        '실시간 점수 및 랭킹 시스템',
-        '게임 결과 히스토리 저장',
-        '반응형 게임 UI/UX'
-      ],
-      achievements: [
-        {
-          title: '완성도 100% 달성',
-          description: '5종류 게임을 포함한 완전한 멀티플레이어 게임 플랫폼 구축'
-        },
-        {
-          title: '동시 접속자 10명 지원',
-          description: 'Socket.IO를 활용한 실시간 멀티플레이어 게임 시스템 구현'
-        },
-        {
-          title: '웹소켓 높은 연결 안정성',
-          description: '재연결 로직과 heartbeat 시스템으로 안정적인 실시간 통신 보장'
-        }
-      ],
-      troubleshooting: [
-        {
-          problem: '웹소켓 연결 불안정 및 끊김 현상',
-          solution: 'Socket.IO의 재연결 로직 강화, heartbeat 간격 최적화, 네트워크 상태 모니터링 구현',
-          impact: '연결 안정성 개선'
-        },
-        {
-          problem: '센서 데이터 지연으로 인한 게임 반응성 저하',
-          solution: '센서 데이터 버퍼링 및 예측 알고리즘 적용, 클라이언트 사이드 보간법 구현',
-          impact: '게임 반응 속도 단축, 사용자 만족도 향상'
-        },
-        {
-          problem: '다중 세션 관리 시 메모리 누수 문제',
-          solution: '세션별 리소스 정리 자동화, 가비지 컬렉션 최적화, 메모리 사용량 모니터링 추가',
-          impact: '메모리 사용량 감소, 서버 안정성 확보'
-        }
-      ],
-      metrics: {
-        codeLines: '15,000+',
-        performance: '1,000+'
-      },
-      deployUrl: 'https://sensorchatbot.minhyuk.kr',
-      githubUrl: 'https://github.com/cmhblue1225/sensorchatbot',
-      status: 'LIVE',
-      color: 'from-orange-500 to-red-500',
-      icon: <Smartphone className="w-8 h-8" />,
       featured: true
     },
     {
@@ -665,6 +869,36 @@ const Projects = () => {
         case 'overview':
           return (
             <div className="space-y-6">
+              {/* 미디어 섹션 (이미지 & 영상) */}
+              {(project.media?.images || project.media?.videos) && (
+                <div className="space-y-4">
+                  <h4 className="text-xl font-semibold text-apple-dark dark:text-white mb-4 flex items-center">
+                    <ImageIcon className="mr-2" size={20} />
+                    프로젝트 미디어
+                  </h4>
+
+                  {/* 이미지 갤러리 */}
+                  {project.media.images && project.media.images.length > 0 && (
+                    <div>
+                      <h5 className="text-sm font-medium text-apple-gray-600 dark:text-apple-gray-400 mb-3">
+                        프로젝트 스크린샷
+                      </h5>
+                      <ImageGallery images={project.media.images} />
+                    </div>
+                  )}
+
+                  {/* 영상 플레이어 */}
+                  {project.media.videos && project.media.videos.length > 0 && (
+                    <div className="mt-6">
+                      <h5 className="text-sm font-medium text-apple-gray-600 dark:text-apple-gray-400 mb-3">
+                        데모 영상
+                      </h5>
+                      <VideoPlayer videos={project.media.videos} />
+                    </div>
+                  )}
+                </div>
+              )}
+
               <div>
                 <h4 className="text-xl font-semibold text-apple-dark dark:text-white mb-4 flex items-center">
                   <Layers className="mr-2" size={20} />
