@@ -456,7 +456,7 @@ const Projects = () => {
         codeLines: '15,000+',
         performance: '1,000+'
       },
-      deployUrl: 'https://sensorchatbot.minhyuk.kr',
+      deployUrl: 'https://aihub.minhyuk.kr',
       githubUrl: 'https://github.com/cmhblue1225/sensorchatbot',
       status: 'LIVE',
       color: 'from-orange-500 to-red-500',
