@@ -210,13 +210,15 @@ Vite 설정에서 성능 최적화를 위한 청크 분할이 구성되어 있�
 7. **Footer**: 푸터 (완료)
 
 #### 프로젝트 데이터 현황
-**현재 등록된 프로젝트 (6개):**
-1. **Synapse AI** (신규 추가) - 지능형 지식 관리 시스템
-2. **Convi** - 편의점 종합 솔루션
-3. **NewMind** - AI 감정 상담 서비스
-4. **Sensor Game Hub** - 센서 기반 게임 플랫폼
-5. **ReviseAI** - AI 기반 코드 리뷰 도구
-6. **AI Doc Generator** - 개발 문서 자동 생성
+**현재 등록된 프로젝트 (8개):**
+1. **Sensor Game Hub** - 센서 기반 게임 플랫폼
+2. **Synapse AI** - 지능형 지식 관리 시스템
+3. **Convi** - 편의점 종합 솔루션
+4. **NewMind** - AI 감정 상담 서비스
+5. **독독 (DockDock)** - 독서 관리 플랫폼
+6. **ReviseAI** - AI 기반 코드 리뷰 도구
+7. **AI Doc Generator** - 개발 문서 자동 생성
+8. **Trading Intelligence** (신규 추가) - AI 트레이딩 플랫폼
 
 ### 🔧 기술적 구현 상태
 

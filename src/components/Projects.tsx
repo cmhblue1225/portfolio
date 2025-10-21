@@ -839,6 +839,80 @@ const Projects = () => {
       color: 'from-cyan-500 to-blue-500',
       icon: <FileText className="w-8 h-8" />,
       featured: false
+    },
+    {
+      id: 8,
+      title: 'Trading Intelligence - AI 트레이딩 플랫폼',
+      subtitle: '시니어를 위한 실시간 AI 주식 분석 서비스',
+      description: '시니어 투자자를 위해 설계된 AI 기반 실시간 주식 분석 플랫폼입니다. WebSocket 기반 1초 단위 주가 갱신, Claude AI와 OpenAI 오케스트레이션을 통한 종합 분석, TTS 음성 알림으로 투자 의사결정을 지원합니다.',
+      image: '/api/placeholder/800/500',
+      category: 'AI 서비스, Fintech',
+      period: '2025.10 - 현재',
+      team: '개인 프로젝트',
+      technologies: ['React 19', 'TypeScript', 'Python', 'FastAPI', 'Claude AI', 'OpenAI API', 'Supabase', 'Redis', 'Socket.IO', 'WebSocket', 'TailwindCSS 4', 'Zustand', 'Recharts', 'KIS API', 'Railway'],
+      features: [
+        'WebSocket 기반 1초 단위 실시간 주가 갱신',
+        'Claude + OpenAI 오케스트레이션 AI 분석',
+        '보유/관심 주식 자동 모니터링',
+        'TTS 음성 알림 + 실시간 토스트 알림',
+        '네이버 뉴스 크롤링 + AI 감성 분석',
+        '기술적 지표 기반 종합 레포트 생성',
+        '시니어 친화 UI (큰 폰트, 고대비 모드)',
+        'Redis Pub/Sub 실시간 메시지 브로커',
+        '6개 마이크로서비스 아키텍처',
+        '완전 자동화된 알림 시스템'
+      ],
+      achievements: [
+        {
+          title: '엔터프라이즈급 마이크로서비스 구축',
+          description: '6개 독립 서비스(Frontend, Stream, AI, News Crawler, Report, Alert)를 Railway에 배포하여 확장 가능한 아키텍처 완성'
+        },
+        {
+          title: 'AI 오케스트레이션 시스템 구현',
+          description: 'Claude AI(메인)와 OpenAI(폴백) 이중화 시스템으로 안정적인 AI 분석 제공 및 비용 최적화'
+        },
+        {
+          title: '실시간 시스템 최적화',
+          description: 'WebSocket + Redis Pub/Sub 조합으로 1초 단위 주가 갱신 및 TTS 알림 자동화 달성'
+        },
+        {
+          title: '시니어 접근성 특화 설계',
+          description: '큰 폰트(18px+), 고대비 모드, 음성 읽기(TTS) 지원으로 시니어 사용자 경험 최적화'
+        }
+      ],
+      troubleshooting: [
+        {
+          problem: 'WebSocket 연결 불안정 및 KIS API Rate Limit 문제',
+          solution: 'Redis Pub/Sub 메시지 브로커 도입, 토큰 캐싱(.kis-token-cache.json), 재연결 로직 강화, heartbeat 시스템 구현',
+          impact: 'WebSocket 연결 안정성 향상, API 호출 횟수 절감'
+        },
+        {
+          problem: 'AI API 비용 및 응답 속도 최적화 필요',
+          solution: 'Claude(메인) + OpenAI(폴백) 오케스트레이션, Redis 24시간 캐싱, 효율적 프롬프트 설계',
+          impact: 'AI 분석 비용 50% 절감, 응답 속도 개선'
+        },
+        {
+          problem: 'Supabase RLS 정책으로 인한 데이터 접근 제어 문제',
+          solution: 'JWT 토큰 기반 인증 시스템 구축, 사용자별 RLS 정책 세분화, Service Key와 Anon Key 분리',
+          impact: '사용자별 데이터 보안 100% 달성, 인증 시스템 안정화'
+        },
+        {
+          problem: '다수 마이크로서비스 배포 및 환경 변수 관리 복잡도',
+          solution: 'Railway 서비스 간 참조(${{service.VAR}}) 활용, 자동 배포 파이프라인 구축, 통합 환경 변수 관리',
+          impact: '배포 시간 단축, 환경 설정 오류 제거'
+        }
+      ],
+      metrics: {
+        codeLines: '30,000+',
+        buildTime: '3~5min',
+        performance: '1s'
+      },
+      deployUrl: 'https://jusik.minhyuk.kr',
+      githubUrl: '#',
+      status: 'LIVE',
+      color: 'from-indigo-500 to-purple-600',
+      icon: <TrendingUp className="w-8 h-8" />,
+      featured: true
     }
   ]
 
