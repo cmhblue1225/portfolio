@@ -5,8 +5,8 @@ const About = () => {
   const features = [
     {
       icon: <Brain className="w-8 h-8" />,
-      title: 'AI 전문성',
-      description: 'OpenAI API를 활용한 감정 분석, 추천 시스템 등 인공지능 기술을 실제 서비스에 적용한 경험'
+      title: 'AI 서비스 기획',
+      description: 'OpenAI API, Anthropic API를 활용한 문서 분석, 추천 시스템 등 인공지능 기술을 실제 서비스에 적용한 경험'
     },
     {
       icon: <Code className="w-8 h-8" />,
@@ -39,9 +39,7 @@ const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-apple-dark dark:text-white mb-6">
             개발자 <span className="text-gradient-apple">조민혁</span>
           </h2>
-          <p className="text-lg text-apple-gray-600 dark:text-apple-gray-300 max-w-3xl mx-auto">
-            혁신적인 기술로 세상을 더 나은 곳으로 만들고자 하는 개발자입니다
-          </p>
+
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-12 items-start">
@@ -105,13 +103,13 @@ const About = () => {
             className="lg:col-span-2 space-y-6"
           >
             <h3 className="text-2xl md:text-3xl font-bold text-apple-dark dark:text-white">
-              안녕하세요, 저는 조민혁입니다!
+              안녕하세요, 조민혁입니다!
             </h3>
             
             <div className="space-y-4 text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed">
               <p>
                 저는 AI와 웹 풀스택 개발에 집중하며,
-                최신 기술을 활용해 사용자에게 실질적인 가치를 제공하는 서비스를 <br></br>만들어왔습니다.
+                최신 기술을 활용해 사용자에게 실질적인 가치를 제공하는 서비스를 만들어왔습니다.
               </p>
               
               <p>
@@ -128,29 +126,16 @@ const About = () => {
                 최신 기술 스택을 활용한 엔터프라이즈급 애플리케이션 개발과
                 <strong className="text-apple-blue"> AI 서비스 개발</strong>에 전문성을 가지고 있습니다.
               </p>
+
+               <p>
+                또한 Claude Code, Cursor 등 다양한 <strong className="text-apple-blue">바이브 코딩(Vibe Coding) </strong>툴을 깊이 이해하고 능숙하게 활용하며,
+                이를 통해 <strong className="text-apple-blue">개발 효율을 극대화하고 빠른 프로토타이핑·아이디어 검증·실시간 협업</strong>이 가능한 개발 환경을 구축해왔습니다.
+                이러한 워크플로우 혁신을 통해, 단순한 코드 작성이 아닌 <strong className="text-apple-blue">창의적 문제 해결 중심의 개발</strong>을 실천하고 있습니다.
+              </p>
             </div>
 
             {/* 연락 정보 */}
-            <div className="pt-4 space-y-2">
-              <div className="flex items-center space-x-3">
-                <span className="text-apple-blue font-semibold">📧 이메일:</span>
-                <a 
-                  href="mailto:cmhblue1225@naver.com"
-                  className="text-apple-gray-600 dark:text-apple-gray-300 hover:text-apple-blue transition-colors"
-                >
-                  cmhblue1225@naver.com
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <span className="text-apple-blue font-semibold">📱 전화:</span>
-                <a 
-                  href="tel:010-5116-5305"
-                  className="text-apple-gray-600 dark:text-apple-gray-300 hover:text-apple-blue transition-colors"
-                >
-                  010-5116-5305
-                </a>
-              </div>
-            </div>
+
           </motion.div>
 
         </div>
