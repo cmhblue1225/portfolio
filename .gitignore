@@ -20,6 +20,9 @@ dist-ssr
 # 미디어 파일 (용량이 큰 원본 파일)
 medias/
 
+# 프로젝트 폴더 (별도 저장소)
+jusik/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
