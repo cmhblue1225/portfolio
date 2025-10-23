@@ -156,7 +156,7 @@ const Skills = () => {
                   최신 기술 스택
                 </h4>
                 <p className="text-sm text-apple-gray-600 dark:text-apple-gray-300">
-                  React 19, TypeScript 5.x 등 최신 기술 활용
+                  React 19, TypeScript 등 최신 기술 활용
                 </p>
               </div>
               <div>
@@ -165,16 +165,17 @@ const Skills = () => {
                   AI 통합 개발
                 </h4>
                 <p className="text-sm text-apple-gray-600 dark:text-apple-gray-300">
-                  OpenAI API를 활용한 실용적 AI 서비스 구현
+                  OpenAI API, Anthropic API를 활용한 실용적 AI 서비스 구현
                 </p>
               </div>
               <div>
                 <div className="text-4xl mb-2">🚀</div>
                 <h4 className="font-semibold text-apple-dark dark:text-white mb-1">
-                  상용 서비스 배포
+                  적극적인 바이브 코딩 툴 사용
                 </h4>
                 <p className="text-sm text-apple-gray-600 dark:text-apple-gray-300">
-                  실제 사용자가 이용하는 서비스 개발 및 운영
+                  AI와 함께 생각하고, 함께 코딩하는 개발로 <br></br>
+                   빠른 프로토타이핑·아이디어 검증·실시간 협업이 가능
                 </p>
               </div>
             </div>

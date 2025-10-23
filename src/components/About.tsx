@@ -129,12 +129,10 @@ const About = () => {
 
                <p>
                 또한 Claude Code, Cursor 등 다양한 <strong className="text-apple-blue">바이브 코딩(Vibe Coding) </strong>툴을 깊이 이해하고 능숙하게 활용하며,
-                이를 통해 <strong className="text-apple-blue">개발 효율을 극대화하고 빠른 프로토타이핑·아이디어 검증·실시간 협업</strong>이 가능한 개발 환경을 구축해왔습니다.
+                이를 통해 <strong className="text-apple-blue">개발 효율을 극대화</strong>하고 <strong className="text-apple-blue">빠른 프로토타이핑·아이디어 검증·실시간 협업</strong>이 가능한 개발 환경을 구축해왔습니다.
                 이러한 워크플로우 혁신을 통해, 단순한 코드 작성이 아닌 <strong className="text-apple-blue">창의적 문제 해결 중심의 개발</strong>을 실천하고 있습니다.
               </p>
             </div>
-
-            {/* 연락 정보 */}
 
           </motion.div>
 

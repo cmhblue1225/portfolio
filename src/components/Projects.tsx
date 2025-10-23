@@ -403,29 +403,22 @@ const Projects = () => {
       id: 1,
       title: 'Sensor Game Hub - 센서 게임 플랫폼',
       subtitle: '새로운 게임 경험의 창조',
-      description: '모바일 센서를 활용한 게임 플랫폼입니다. 플레이 뿐 아니라, AI와 대화를 통해 게임 생성 및 유지보수가 가능한 게임 허브입니다.',
+      description: '모바일 센서를 활용한 게임 플랫폼입니다. 플레이 뿐 아니라, AI와 대화를 통해 게임 생성 및 유지보수 등 AI를 활용한 차세대 소프트웨어 개발 방법론을 제시합니다.',
       image: '/api/placeholder/800/500',
       category: '게임 플랫폼, AI',
       period: '2025.08 - 2025.10',
       team: '개인 프로젝트',
       technologies: ['Node.js', 'Socket.IO', 'Express.js', 'OpenAI API', 'Anthropic API','pgvector', 'WebSocket', 'QR Code', 'Device Motion API', 'Railway'],
       features: [
-        'ai와 멀티턴 대화를 통한 게임 생성 기능',
-        'sonnet 4.5 model + 1M Token + Extended Thinking 사용',
+        'AI와 멀티턴 대화를 통한 게임 생성 기능',
+        'sonnet 4.5 model + 1M Token + Extended Thinking 사용하여 성능 극대화',
         '생성된 게임에 대한 기능/버그 수정 자동화',
-        'ai 기반 대화형 매뉴얼 시스템(RAG)',
-        'QR 코드 기반 원터치 연결 시스템',
-        '모바일 센서(가속도, 자이로) 활용',
-        '독립적인 게임 세션 관리',
-        'Solo/Dual/Multi 다양한 게임 모드',
-        '실시간 점수 및 랭킹 시스템',
-        '게임 결과 히스토리 저장',
-        '반응형 게임 UI/UX'
+        'ai 기반 대화형 매뉴얼 시스템(RAG)'
       ],
       achievements: [
         {
           title: 'Claude sonnet 4.5 model 1M Token, Extended Thinking 사용',
-          description: '5종류 게임을 포함한 완전한 멀티플레이어 게임 플랫폼 구축'
+          description: '최신 LLM 모델, 구체적인 프롬프트 전략으로 AI를 검증된 프레임워크로 전환'
         },
         {
           title: '동시 접속자 10명 지원',
@@ -481,13 +474,9 @@ const Projects = () => {
       technologies: ['React 19', 'TypeScript', 'Supabase', 'OpenAI API', 'pgvector', 'D3.js', 'TailwindCSS', 'Vite', 'Netlify'],
       features: [
         'AI 기반 PDF 자동 텍스트 추출 및 요약 생성',
-        'pgvector를 활용한 벡터 의미 검색 시스템',
-        'D3.js 기반 실시간 인터랙티브 지식 그래프',
+        'AI 기반 암기 노트, 퀴즈 생성 등 학습 기능 제공',
         '개인 지식 기반 AI 채팅 및 질의응답',
-        'Supabase Edge Functions 서버사이드 처리',
-        'Row Level Security 엔터프라이즈급 보안',
-        '실시간 데이터 동기화 및 협업 지원',
-        '완전 자동화된 지식 관리 워크플로우'
+        'pgvector를 활용한 벡터 의미 검색 시스템'
       ],
       achievements: [
         {
@@ -544,13 +533,9 @@ const Projects = () => {
       technologies: ['React 19', 'TypeScript', 'Supabase', 'TailwindCSS', '토스페이먼츠', 'PostgreSQL', 'RLS', 'Render'],
       features: [
         '실시간 주문 및 재고 관리 시스템',
-        '토스페이먼츠 완전 결제 연동',
+        '토스페이먼츠 결제 연동',
         '17개 테이블 엔터프라이즈급 데이터베이스',
         '본사-점주-고객 3자 실시간 통합 관리',
-        'RLS 보안 정책으로 데이터 보호',
-        '매출 분석 및 리포팅 대시보드',
-        '실시간 알림 및 상태 업데이트',
-        '모바일 최적화 반응형 UI'
       ],
       achievements: [
         {
@@ -605,7 +590,7 @@ const Projects = () => {
       id: 4,
       title: 'NewMind - 감정 AI 상담 서비스',
       subtitle: '감정을 이해하는 인공지능 상담사',
-      description: 'OpenAI GPT API를 활용한 감정 분석 및 AI 상담 서비스입니다. 사용자의 일기를 분석하여 감정 상태를 파악하고, 일기를 기반으로 상담 및 맞춤형 피드백과 Spotify 음악 추천을 제공합니다.',
+      description: 'OpenAI GPT API를 활용한 감정 분석 및 AI 상담 서비스입니다. 사용자의 일기를 분석하여 감정 상태를 파악하고, 일기를 기반으로 상담 및 맞춤형 피드백과 음악 추천을 제공합니다.',
       image: '/api/placeholder/800/500',
       category: 'AI 서비스',
       period: '2025.03 - 2025.04',
@@ -613,13 +598,9 @@ const Projects = () => {
       technologies: ['Vanilla JavaScript', 'Node.js', 'OpenAI GPT-4', 'Supabase', 'Spotify API', 'Express.js', 'Netlify', 'Render'],
       features: [
         'GPT-4 기반 고도화된 감정 분석',
-        'Spotify API 활용 맞춤 음악 추천',
         '커뮤니티 일기 공유 및 피드백',
-        '실시간 알림 및 상담 시스템',
+        '자살·극단적 표현을 자동 감지해 위로 메시지와 상담 연락처를 안내하는 안전 대응 기능',
         '주간/월간 감정 패턴 분석',
-        '익명 채팅 상담 기능',
-        'PWA 지원으로 앱처럼 사용',
-        '다크모드 UI/UX'
       ],
       achievements: [
         {
@@ -666,21 +647,17 @@ const Projects = () => {
       id: 5,
       title: '독독 (DockDock) - 독서 관리 플랫폼',
       subtitle: '똑똑한 독서 습관, 독독하자',
-      description: '독서 기록, 진행 상황 추적, AI 기반 맞춤 책 추천까지 제공하는 종합 독서 관리 플랫폼입니다. React 19와 Supabase를 활용한 웹/iOS 크로스 플랫폼 서비스입니다.',
+      description: '독서 기록, 진행 상황 추적, AI 기반 맞춤 책 추천까지 제공하는 종합 독서 관리 플랫폼입니다. React와 Supabase, OpenAI api를 활용한 웹 플랫폼 서비스입니다.',
       image: '/api/placeholder/800/500',
       category: '독서 관리, AI 추천',
       period: '2025.10 - 현재',
       team: '개인 프로젝트 (iOS 협업)',
-      technologies: ['React 19', 'TypeScript', 'Node.js', 'Express', 'Supabase', 'OpenAI GPT-4o', 'TanStack Query', 'Zustand', 'Tailwind CSS', 'Aladin API', 'Swagger', 'Railway', 'Netlify'],
+      technologies: ['OpenAI GPT-4o', 'React 19', 'TypeScript', 'Node.js', 'Express', 'Supabase', 'TanStack Query', 'Zustand', 'Tailwind CSS', 'Aladin API', 'Swagger', 'Railway', 'Netlify'],
       features: [
         '알라딘 API 연동 국내 전체 도서 검색',
         '독서 진행률 추적 및 기록 시스템',
         'AI 기반 개인화 도서 추천 (OpenAI GPT-4o)',
-        'Supabase Storage 사진 첨부 기능',
-        '별점/리뷰/키워드 태그 시스템',
-        '독서 통계 및 분석 대시보드',
-        'Apple/Kakao 소셜 로그인 지원',
-        '완전한 Swagger API 문서 (Swift 예시 포함)'
+        '독서 통계 및 분석 대시보드'
       ],
       achievements: [
         {
@@ -850,18 +827,12 @@ const Projects = () => {
       category: 'AI 서비스, Fintech',
       period: '2025.10 - 현재',
       team: '개인 프로젝트',
-      technologies: ['React 19', 'TypeScript', 'Python', 'FastAPI', 'Claude AI', 'OpenAI API', 'Supabase', 'Redis', 'Socket.IO', 'WebSocket', 'TailwindCSS 4', 'Zustand', 'Recharts', 'KIS API', 'Railway'],
+      technologies: ['Claude AI', 'OpenAI API', 'React 19', 'TypeScript', 'Python', 'FastAPI', 'Supabase', 'Redis', 'Socket.IO', 'WebSocket', 'TailwindCSS 4', 'Zustand', 'Recharts', 'KIS API', 'Railway'],
       features: [
-        'WebSocket 기반 1초 단위 실시간 주가 갱신',
+        '뉴스 크롤링 + AI 감성 분석 + 기술적 지표 기반 종합 레포트 생성',
         'Claude + OpenAI 오케스트레이션 AI 분석',
         '보유/관심 주식 자동 모니터링',
         'TTS 음성 알림 + 실시간 토스트 알림',
-        '네이버 뉴스 크롤링 + AI 감성 분석',
-        '기술적 지표 기반 종합 레포트 생성',
-        '시니어 친화 UI (큰 폰트, 고대비 모드)',
-        'Redis Pub/Sub 실시간 메시지 브로커',
-        '6개 마이크로서비스 아키텍처',
-        '완전 자동화된 알림 시스템'
       ],
       achievements: [
         {
@@ -884,7 +855,7 @@ const Projects = () => {
       troubleshooting: [
         {
           problem: 'WebSocket 연결 불안정 및 KIS API Rate Limit 문제',
-          solution: 'Redis Pub/Sub 메시지 브로커 도입, 토큰 캐싱(.kis-token-cache.json), 재연결 로직 강화, heartbeat 시스템 구현',
+          solution: 'Redis Pub/Sub 메시지 브로커 도입, 토큰 캐싱(.kis-token-cache.json), 재연결 로직 강화',
           impact: 'WebSocket 연결 안정성 향상, API 호출 횟수 절감'
         },
         {

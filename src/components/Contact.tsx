@@ -10,7 +10,7 @@ const Contact = () => {
       title: '이메일',
       value: 'cmhblue1225@naver.com',
       href: 'mailto:cmhblue1225@naver.com',
-      description: '언제든지 연락주세요',
+      description: '',
       type: 'email' as const
     },
     {
@@ -18,7 +18,7 @@ const Contact = () => {
       title: '전화번호',
       value: '010-5116-5305',
       href: 'tel:010-5116-5305',
-      description: '항상 가능',
+      description: '',
       type: 'phone' as const
     },
     {
@@ -26,7 +26,7 @@ const Contact = () => {
       title: '위치',
       value: '대한민국 서울',
       href: '#',
-      description: '대한민국 전국 근무 가능',
+      description: '',
       type: null
     }
   ]
@@ -78,10 +78,6 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-apple-dark dark:text-white mb-6">
                 연락처 정보
               </h3>
-              <p className="text-apple-gray-600 dark:text-apple-gray-300 mb-8">
-                프로젝트 문의, 협업 제안, 또는 단순한 인사말까지 모든 연락을 환영합니다.
-                빠른 시일 내에 답변드리겠습니다.
-              </p>
             </div>
 
             {/* 연락처 카드들 */}
