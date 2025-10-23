@@ -403,16 +403,17 @@ const Projects = () => {
       id: 1,
       title: 'Sensor Game Hub - 센서 게임 플랫폼',
       subtitle: '새로운 게임 경험의 창조',
-      description: '모바일 센서를 활용한 혁신적인 게임 플랫폼입니다. QR 코드로 간편하게 연결하고, 기울이기와 회전으로 다양한 게임을 즐길 수 있는 멀티플레이어 지원 게임 허브입니다.',
+      description: '모바일 센서를 활용한 게임 플랫폼입니다. 플레이 뿐 아니라, AI와 대화를 통해 게임 생성 및 유지보수가 가능한 게임 허브입니다.',
       image: '/api/placeholder/800/500',
       category: '게임 플랫폼, AI',
-      period: '2025.08 - 2025.09',
+      period: '2025.08 - 2025.10',
       team: '개인 프로젝트',
-      technologies: ['Node.js', 'Socket.IO', 'Express.js', 'OpenAI API', 'Anthropic API','Canvas API', 'WebSocket', 'QR Code', 'Device Motion API', 'Render'],
+      technologies: ['Node.js', 'Socket.IO', 'Express.js', 'OpenAI API', 'Anthropic API','pgvector', 'WebSocket', 'QR Code', 'Device Motion API', 'Railway'],
       features: [
-        '실시간 멀티플레이어 게임 (최대 10명)',
+        'ai와 멀티턴 대화를 통해 게임 생성 기능',
+        'sonnet 4.5 model + 1M Token + Extended Thinking 사용',
+        '생성된 게임에 대한 기능/버그 수정 자동화',
         'ai 기반 대화형 매뉴얼 시스템(RAG)',
-        '멀티턴 대화를 통해 게임 생성 기능 구현',
         'QR 코드 기반 원터치 연결 시스템',
         '모바일 센서(가속도, 자이로) 활용',
         '독립적인 게임 세션 관리',
@@ -423,7 +424,7 @@ const Projects = () => {
       ],
       achievements: [
         {
-          title: '완성도 100% 달성',
+          title: 'Claude sonnet 4.5 model 1M Token, Extended Thinking 사용',
           description: '5종류 게임을 포함한 완전한 멀티플레이어 게임 플랫폼 구축'
         },
         {
@@ -437,9 +438,9 @@ const Projects = () => {
       ],
       troubleshooting: [
         {
-          problem: '웹소켓 연결 불안정 및 끊김 현상',
-          solution: 'Socket.IO의 재연결 로직 강화, heartbeat 간격 최적화, 네트워크 상태 모니터링 구현',
-          impact: '연결 안정성 개선'
+          problem: 'ai api 불안정으로 인한 ai 서비스 제공 불가',
+          solution: 'Anthropic Claude sonnet 4.5 + ChatGPT 4-turbo 풀백 시스템으로 안정성 강화',
+          impact: 'ai 서비스 안정성 개선'
         },
         {
           problem: '센서 데이터 지연으로 인한 게임 반응성 저하',
