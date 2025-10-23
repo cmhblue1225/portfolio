@@ -410,7 +410,7 @@ const Projects = () => {
       team: '개인 프로젝트',
       technologies: ['Node.js', 'Socket.IO', 'Express.js', 'OpenAI API', 'Anthropic API','pgvector', 'WebSocket', 'QR Code', 'Device Motion API', 'Railway'],
       features: [
-        'ai와 멀티턴 대화를 통해 게임 생성 기능',
+        'ai와 멀티턴 대화를 통한 게임 생성 기능',
         'sonnet 4.5 model + 1M Token + Extended Thinking 사용',
         '생성된 게임에 대한 기능/버그 수정 자동화',
         'ai 기반 대화형 매뉴얼 시스템(RAG)',
