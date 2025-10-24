@@ -588,7 +588,7 @@ const Projects = () => {
     },
     {
       id: 4,
-      title: 'NewMind - 감정 AI 상담 서비스',
+      title: '한 숨의 위로 - 감정 AI 상담 서비스',
       subtitle: '감정을 이해하는 인공지능 상담사',
       description: 'OpenAI GPT API를 활용한 감정 분석 및 AI 상담 서비스입니다. 사용자의 일기를 분석하여 감정 상태를 파악하고, 일기를 기반으로 상담 및 맞춤형 피드백과 음악 추천을 제공합니다.',
       image: '/api/placeholder/800/500',
