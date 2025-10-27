@@ -455,12 +455,7 @@ const Projects = () => {
       status: 'LIVE',
       color: 'from-orange-500 to-red-500',
       icon: <Smartphone className="w-8 h-8" />,
-      featured: true,
-      media: {
-        videos: [
-          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/sensorgamehub/sensorgamehub-demo.mp4'
-        ]
-      }
+      featured: true
     },
     {
       id: 2,
