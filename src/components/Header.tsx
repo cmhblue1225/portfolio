@@ -49,7 +49,7 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderProps) => {
             whileHover={{ scale: 1.05 }}
             className="text-xl font-bold text-apple-dark dark:text-white"
           >
-            민혁이의 보물창고
+            조민혁의 포트폴리오
           </motion.div>
 
           {/* 데스크톱 메뉴 */}
