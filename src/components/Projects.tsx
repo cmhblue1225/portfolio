@@ -726,7 +726,12 @@ const Projects = () => {
       status: 'LIVE',
       color: 'from-green-500 to-emerald-600',
       icon: <BookOpen className="w-8 h-8" />,
-      featured: true
+      featured: true,
+      media: {
+        videos: [
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/dockdock/dockdock-demo.mp4'
+        ]
+      }
     },
     {
       id: 6,
