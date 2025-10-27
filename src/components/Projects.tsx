@@ -729,7 +729,7 @@ const Projects = () => {
       featured: true,
       media: {
         videos: [
-          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/dockdock/dockdock-demo.mp4'
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/dockdock/dockdock-demo-muted.mp4'
         ]
       }
     },
