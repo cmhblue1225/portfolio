@@ -455,7 +455,19 @@ const Projects = () => {
       status: 'LIVE',
       color: 'from-orange-500 to-red-500',
       icon: <Smartphone className="w-8 h-8" />,
-      featured: true
+      featured: true,
+      media: {
+        images: [
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/sensorgamehub/sensor_1.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/sensorgamehub/sensor_2.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/sensorgamehub/sensor_3.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/sensorgamehub/sensor_4.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/sensorgamehub/sensor_5.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/sensorgamehub/sensor_6.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/sensorgamehub/sensor_7.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/sensorgamehub/sensor_8.png'
+        ]
+      }
     },
     {
       id: 2,
@@ -514,7 +526,16 @@ const Projects = () => {
       status: 'LIVE',
       color: 'from-purple-500 to-indigo-600',
       icon: <Brain className="w-8 h-8" />,
-      featured: true
+      featured: true,
+      media: {
+        images: [
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/synapse/synapse_1.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/synapse/synapse_2.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/synapse/synapse_3.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/synapse/synapse_4.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/synapse/synapse_5.png'
+        ]
+      }
     },
     {
       id: 3,
