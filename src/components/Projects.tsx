@@ -657,7 +657,17 @@ const Projects = () => {
       status: 'LIVE',
       color: 'from-emerald-500 to-teal-600',
       icon: <Brain className="w-8 h-8" />,
-      featured: true
+      featured: true,
+      media: {
+        images: [
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/diary/diary_1.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/diary/diary_2.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/diary/diary_3.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/diary/diary_4.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/diary/diary_5.png',
+          'https://ddilbfhvzadnlaabjfdr.supabase.co/storage/v1/object/public/project-media/diary/diary_6.png'
+        ]
+      }
     },
     {
       id: 5,
