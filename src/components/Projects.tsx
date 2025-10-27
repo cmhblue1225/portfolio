@@ -407,7 +407,7 @@ const Projects = () => {
       image: '/api/placeholder/800/500',
       category: '게임 플랫폼, AI',
       period: '2025.08 - 2025.10',
-      team: '개인 프로젝트',
+      team: '팀 프로젝트 (포지션 : 팀 리더)',
       technologies: ['Node.js', 'Socket.IO', 'Express.js', 'OpenAI API', 'Anthropic API','pgvector', 'WebSocket', 'QR Code', 'Device Motion API', 'Railway'],
       features: [
         'AI와 멀티턴 대화를 통한 게임 생성 기능',
