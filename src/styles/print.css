@@ -7,18 +7,40 @@
     margin: 2cm;
   }
 
-  /* 기본 스타일 */
+  /* 기본 스타일 - 라이트 모드 강제 */
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     color-adjust: exact !important;
+    background: white !important;
   }
 
   body {
     font-size: 11pt;
     line-height: 1.5;
-    color: #000;
+    color: #000 !important;
     background: white !important;
+  }
+
+  /* 다크모드 완전 제거 */
+  html,
+  html.dark,
+  .dark,
+  [class*="dark:"] {
+    background: white !important;
+    color: #000 !important;
+  }
+
+  /* 모든 섹션 배경 흰색 */
+  section,
+  div,
+  header,
+  main,
+  article,
+  aside,
+  footer {
+    background: white !important;
+    background-color: white !important;
   }
 
   /* 불필요한 요소 숨기기 */
@@ -104,16 +126,56 @@
     padding: 1cm 0;
     border-bottom: 3pt solid #000;
     margin-bottom: 1cm;
+    background: white !important;
+  }
+
+  #hero * {
+    background: transparent !important;
+    color: #000 !important;
+  }
+
+  #hero .text-gradient-apple,
+  #hero .text-gradient {
+    background: transparent !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #000 !important;
+    color: #000 !important;
   }
 
   /* About 섹션 */
   #about {
     page-break-after: avoid;
+    background: white !important;
+  }
+
+  #about * {
+    background: white !important;
+    color: #000 !important;
+  }
+
+  #about .text-apple-blue,
+  #about strong {
+    color: #0066CC !important;
+    font-weight: bold;
   }
 
   /* Projects 섹션 */
   #projects {
     page-break-before: always;
+    background: white !important;
+  }
+
+  #projects * {
+    background: white !important;
+    color: #000 !important;
+  }
+
+  #projects h2,
+  #projects h3,
+  #projects h4 {
+    color: #000 !important;
+    background: white !important;
   }
 
   .project-card {
@@ -121,34 +183,50 @@
     border: 1pt solid #000;
     padding: 0.5cm;
     margin-bottom: 0.5cm;
-    background: white;
+    background: white !important;
   }
 
   .project-title {
     font-size: 14pt;
     font-weight: bold;
     margin-bottom: 0.2cm;
+    color: #000 !important;
   }
 
   .project-tech {
     font-size: 9pt;
-    color: #333;
+    color: #333 !important;
     margin-bottom: 0.3cm;
+    background: white !important;
   }
 
   .project-description {
     font-size: 10pt;
     margin-bottom: 0.3cm;
+    color: #000 !important;
   }
 
   /* Skills 섹션 */
   #skills {
     page-break-before: avoid;
     page-break-after: avoid;
+    background: white !important;
+  }
+
+  #skills * {
+    background: white !important;
+    color: #000 !important;
   }
 
   .skill-category {
     margin-bottom: 0.5cm;
+    background: white !important;
+  }
+
+  .skill-category h3,
+  .skill-category h4 {
+    color: #000 !important;
+    background: white !important;
   }
 
   .skill-badge {
@@ -158,6 +236,7 @@
     border: 1pt solid #000;
     font-size: 9pt;
     background: white !important;
+    color: #000 !important;
   }
 
   /* Contact 섹션 */
@@ -167,12 +246,19 @@
     border-top: 2pt solid #000;
     padding-top: 1cm;
     margin-top: 1cm;
+    background: white !important;
+  }
+
+  #contact * {
+    background: white !important;
+    color: #000 !important;
   }
 
   .contact-info {
     font-size: 12pt;
     font-weight: bold;
     margin: 0.3cm 0;
+    color: #000 !important;
   }
 
   /* 이미지 최적화 */
@@ -197,9 +283,24 @@
   .gradient,
   .bg-gradient-to-r,
   .bg-gradient-to-br,
-  [class*="gradient"] {
+  .bg-gradient-to-tr,
+  [class*="gradient"],
+  [class*="bg-gradient"],
+  [class*="from-"],
+  [class*="to-"],
+  [class*="via-"] {
     background: white !important;
+    background-image: none !important;
     color: #000 !important;
+  }
+
+  /* 모든 배경색 흰색으로 강제 */
+  [class*="bg-apple"],
+  [class*="bg-gray"],
+  [class*="bg-blue"],
+  [class*="bg-purple"] {
+    background: white !important;
+    background-color: white !important;
   }
 
   /* 테이블 스타일 */
