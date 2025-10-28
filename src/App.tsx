@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import './App.css'
+import './styles/print.css'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -62,8 +63,9 @@ function App() {
       
       {/* 스크롤 진행바 */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-apple-blue to-purple-500 origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-apple-blue to-purple-500 origin-left z-50 print:hidden"
         style={{ scaleX }}
+        data-print="hide"
       />
     </div>
   )

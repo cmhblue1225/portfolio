@@ -118,7 +118,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="pt-8"
+              className="pt-8 print:hidden"
             >
               <h4 className="text-lg font-semibold text-apple-dark dark:text-white mb-4">
                 소셜 미디어

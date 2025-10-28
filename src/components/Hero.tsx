@@ -100,7 +100,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 print:hidden"
           >
             <motion.a
               href="#projects"
@@ -136,7 +136,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.8 }}
-            className="flex justify-center space-x-6 mb-16"
+            className="flex justify-center space-x-6 mb-16 print:hidden"
           >
             <motion.a
               href="mailto:cmhblue1225@naver.com"
@@ -164,7 +164,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 2.2 }}
             whileHover={{ y: -5 }}
-            className="animate-bounce text-apple-gray-400 dark:text-apple-gray-500 hover:text-apple-blue dark:hover:text-apple-blue transition-colors duration-200"
+            className="animate-bounce text-apple-gray-400 dark:text-apple-gray-500 hover:text-apple-blue dark:hover:text-apple-blue transition-colors duration-200 print:hidden"
           >
             <ArrowDown size={32} />
           </motion.button>

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Sun, Moon, Menu, X } from 'lucide-react'
+import { Sun, Moon, Menu, X, Printer } from 'lucide-react'
 import { useState } from 'react'
 import { trackDarkModeToggle, trackNavigation } from '../utils/analytics'
 
@@ -35,12 +35,17 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderProps) => {
     trackDarkModeToggle(!darkMode)
   }
 
+  const handlePrint = () => {
+    window.print()
+  }
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 glass-effect"
+      className="fixed top-0 left-0 right-0 z-50 glass-effect print:hidden"
+      data-print="hide"
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -65,7 +70,18 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderProps) => {
                 {item.name}
               </motion.button>
             ))}
-            
+
+            {/* 인쇄 버튼 */}
+            <motion.button
+              onClick={handlePrint}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-full bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-600 dark:text-apple-gray-300 hover:text-apple-blue dark:hover:text-apple-blue transition-all duration-200"
+              title="포트폴리오 인쇄"
+            >
+              <Printer size={20} />
+            </motion.button>
+
             {/* 다크모드 토글 */}
             <motion.button
               onClick={handleDarkModeToggle}
@@ -80,6 +96,16 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderProps) => {
           {/* 모바일 메뉴 버튼 */}
           <div className="md:hidden flex items-center space-x-4">
             <motion.button
+              onClick={handlePrint}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 rounded-full bg-apple-gray-100 dark:bg-apple-gray-700 text-apple-gray-600 dark:text-apple-gray-300"
+              title="포트폴리오 인쇄"
+            >
+              <Printer size={20} />
+            </motion.button>
+
+            <motion.button
               onClick={handleDarkModeToggle}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -87,7 +113,7 @@ const Header = ({ darkMode, toggleDarkMode }: HeaderProps) => {
             >
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </motion.button>
-            
+
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               whileHover={{ scale: 1.1 }}

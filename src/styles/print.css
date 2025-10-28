@@ -1,0 +1,314 @@
+/* 포트폴리오 인쇄 전용 스타일 */
+
+@media print {
+  /* 페이지 설정 */
+  @page {
+    size: A4;
+    margin: 2cm;
+  }
+
+  /* 기본 스타일 */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  body {
+    font-size: 11pt;
+    line-height: 1.5;
+    color: #000;
+    background: white !important;
+  }
+
+  /* 불필요한 요소 숨기기 */
+  header,
+  .print\\:hidden,
+  button,
+  .scroll-progress,
+  .mobile-menu,
+  .dark-mode-toggle,
+  nav,
+  [data-print="hide"] {
+    display: none !important;
+  }
+
+  /* 페이지 브레이크 */
+  .page-break-before {
+    page-break-before: always;
+  }
+
+  .page-break-after {
+    page-break-after: always;
+  }
+
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+
+  /* 링크 스타일 */
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+
+  /* 제목 스타일 */
+  h1 {
+    font-size: 24pt;
+    font-weight: bold;
+    margin-bottom: 0.5cm;
+    color: #000;
+  }
+
+  h2 {
+    font-size: 18pt;
+    font-weight: bold;
+    margin-top: 1cm;
+    margin-bottom: 0.5cm;
+    color: #000;
+    border-bottom: 2pt solid #000;
+    padding-bottom: 0.2cm;
+  }
+
+  h3 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-top: 0.5cm;
+    margin-bottom: 0.3cm;
+    color: #000;
+  }
+
+  h4 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin-top: 0.3cm;
+    margin-bottom: 0.2cm;
+    color: #000;
+  }
+
+  /* 섹션 스타일 */
+  section {
+    page-break-inside: avoid;
+    margin-bottom: 1.5cm;
+  }
+
+  /* Hero 섹션 */
+  #hero {
+    text-align: center;
+    padding: 1cm 0;
+    border-bottom: 3pt solid #000;
+    margin-bottom: 1cm;
+  }
+
+  /* About 섹션 */
+  #about {
+    page-break-after: avoid;
+  }
+
+  /* Projects 섹션 */
+  #projects {
+    page-break-before: always;
+  }
+
+  .project-card {
+    page-break-inside: avoid;
+    border: 1pt solid #000;
+    padding: 0.5cm;
+    margin-bottom: 0.5cm;
+    background: white;
+  }
+
+  .project-title {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 0.2cm;
+  }
+
+  .project-tech {
+    font-size: 9pt;
+    color: #333;
+    margin-bottom: 0.3cm;
+  }
+
+  .project-description {
+    font-size: 10pt;
+    margin-bottom: 0.3cm;
+  }
+
+  /* Skills 섹션 */
+  #skills {
+    page-break-before: avoid;
+    page-break-after: avoid;
+  }
+
+  .skill-category {
+    margin-bottom: 0.5cm;
+  }
+
+  .skill-badge {
+    display: inline-block;
+    padding: 2pt 8pt;
+    margin: 2pt;
+    border: 1pt solid #000;
+    font-size: 9pt;
+    background: white !important;
+  }
+
+  /* Contact 섹션 */
+  #contact {
+    page-break-before: avoid;
+    text-align: center;
+    border-top: 2pt solid #000;
+    padding-top: 1cm;
+    margin-top: 1cm;
+  }
+
+  .contact-info {
+    font-size: 12pt;
+    font-weight: bold;
+    margin: 0.3cm 0;
+  }
+
+  /* 이미지 최적화 */
+  img {
+    max-width: 100%;
+    page-break-inside: avoid;
+    display: block;
+    margin: 0.5cm auto;
+  }
+
+  /* 애니메이션 비활성화 */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+
+  /* 배경 그라데이션 제거 */
+  .gradient,
+  .bg-gradient-to-r,
+  .bg-gradient-to-br,
+  [class*="gradient"] {
+    background: white !important;
+    color: #000 !important;
+  }
+
+  /* 테이블 스타일 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5cm 0;
+  }
+
+  th,
+  td {
+    border: 1pt solid #000;
+    padding: 0.2cm;
+    text-align: left;
+  }
+
+  th {
+    background: #f0f0f0 !important;
+    font-weight: bold;
+  }
+
+  /* 리스트 스타일 */
+  ul,
+  ol {
+    margin: 0.3cm 0;
+    padding-left: 1cm;
+  }
+
+  li {
+    margin: 0.2cm 0;
+  }
+
+  /* 코드 블록 */
+  code,
+  pre {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 9pt;
+    background: #f5f5f5 !important;
+    border: 1pt solid #ddd;
+    padding: 0.1cm 0.2cm;
+  }
+
+  /* 강조 텍스트 */
+  strong,
+  b {
+    font-weight: bold;
+    color: #000;
+  }
+
+  /* 인용구 */
+  blockquote {
+    border-left: 3pt solid #000;
+    padding-left: 0.5cm;
+    margin: 0.5cm 0;
+    font-style: italic;
+  }
+
+  /* 푸터 */
+  footer {
+    page-break-before: avoid;
+    text-align: center;
+    font-size: 9pt;
+    color: #666;
+    margin-top: 1cm;
+    padding-top: 0.5cm;
+    border-top: 1pt solid #ccc;
+  }
+
+  /* 인쇄용 헤더 추가 */
+  .print-header {
+    display: block !important;
+    text-align: center;
+    margin-bottom: 1cm;
+    padding-bottom: 0.5cm;
+    border-bottom: 2pt solid #000;
+  }
+
+  .print-header h1 {
+    margin: 0;
+    font-size: 24pt;
+  }
+
+  .print-header .subtitle {
+    font-size: 12pt;
+    color: #666;
+    margin-top: 0.2cm;
+  }
+
+  /* 페이지 번호 */
+  .page-number {
+    position: running(pageNumber);
+  }
+
+  @page {
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-size: 9pt;
+      color: #666;
+    }
+  }
+}
+
+/* 인쇄 전용 클래스 (화면에서는 숨김) */
+.print-only {
+  display: none;
+}
+
+@media print {
+  .print-only {
+    display: block !important;
+  }
+}
